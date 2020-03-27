@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
-import addSeconds from 'date-fns/add_seconds';
-import { of, BehaviorSubject, Observable } from 'rxjs';
+import addSeconds from 'date-fns/addSeconds';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { DelonCacheConfig } from './cache.config';
 import { CacheNotifyResult, CacheNotifyType, ICache, ICacheStore } from './interface';

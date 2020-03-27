@@ -71,7 +71,7 @@ export class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements O
   }
 
   _change(value: Date | Date[] | null) {
-    if (value == null || (<Date[]>value).length < 2) {
+    if (value == null || (value as Date[]).length < 2) {
       this.setValue(null);
       this.setEnd(null);
       return;

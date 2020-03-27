@@ -1,11 +1,12 @@
+import { dispatchMouseEvent } from '@angular/cdk/testing/testbed/fake-events';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { fakeAsync, tick, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { configureTestSuite, createTestContext, dispatchMouseEvent } from '@delon/testing';
-import differenceInDays from 'date-fns/difference_in_days';
+import { configureTestSuite, createTestContext } from '@delon/testing';
+import differenceInDays from 'date-fns/differenceInDays';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DateRangePickerShortcut } from './date-picker.config';
@@ -96,9 +97,7 @@ describe('abc: date-picker: range', () => {
       context.shortcut = true;
       fixture.detectChanges();
       openPicker();
-      getPickerFooterExtra()
-        .querySelectorAll('a')[0]
-        .click();
+      getPickerFooterExtra().querySelectorAll('a')[0].click();
       timeEnd();
       expect(differenceInDays(context.i.end, context.i.start)).toBe(0);
     }));
@@ -119,9 +118,7 @@ describe('abc: date-picker: range', () => {
       fixture.detectChanges();
       openPicker();
       expect(dl.query(By.css('.ant-calendar-footer-extra')) == null).toBe(false);
-      getPickerFooterExtra()
-        .querySelectorAll('a')[0]
-        .click();
+      getPickerFooterExtra().querySelectorAll('a')[0].click();
       const list = getPickerFooterExtra().querySelectorAll('a');
       const shortcut = context.comp.shortcut as DateRangePickerShortcut;
       expect(list.length).toBe(shortcut.list!.length);

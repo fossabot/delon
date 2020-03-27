@@ -74,7 +74,13 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "case-insensitive",
+        "named-imports-order": "case-insensitive"
+      }
+    ],
     "quotemark": [
       false,
       "single"
@@ -100,7 +106,9 @@
     "no-object-literal-type-assertion": false,
     "no-bitwise": false,
     "no-this-assignment": false,
-    "prefer-conditional-expression": false
+    "prefer-conditional-expression": false,
+    "no-duplicate-imports": true,
+    "no-import-side-effect": true
   },
   "linterOptions": {
     "exclude": [

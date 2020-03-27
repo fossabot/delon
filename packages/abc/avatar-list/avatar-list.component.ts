@@ -10,13 +10,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputNumber } from '@delon/util';
-
 import { AvatarListItemComponent } from './avatar-list-item.component';
 
 @Component({
   selector: 'avatar-list',
   exportAs: 'avatarList',
-  templateUrl: './avatar-list.component.html',
+  // templateUrl: './avatar-list.component.html',
+  template: `<nz-avatar></nz-avatar>`,
   host: { '[class.avatar-list]': 'true' },
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,

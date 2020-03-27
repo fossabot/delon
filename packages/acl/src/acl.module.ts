@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { DelonUtilModule } from '@delon/util';
 
 import { ACLIfDirective } from './acl-if.directive';
