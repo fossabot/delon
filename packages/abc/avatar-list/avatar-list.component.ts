@@ -15,8 +15,7 @@ import { AvatarListItemComponent } from './avatar-list-item.component';
 @Component({
   selector: 'avatar-list',
   exportAs: 'avatarList',
-  // templateUrl: './avatar-list.component.html',
-  template: `<nz-avatar></nz-avatar>`,
+  templateUrl: './avatar-list.component.html',
   host: { '[class.avatar-list]': 'true' },
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,

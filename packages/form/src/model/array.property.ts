@@ -1,4 +1,5 @@
 import { DelonFormConfig } from '../config';
+import { SF_SEQ } from '../const';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
@@ -6,7 +7,6 @@ import { SchemaValidatorFactory } from '../validator.factory';
 import { FormProperty, PropertyGroup } from './form.property';
 import { FormPropertyFactory } from './form.property.factory';
 import { ObjectProperty } from './object.property';
-import { SF_SEQ } from '../const';
 
 export class ArrayProperty extends PropertyGroup {
   constructor(
@@ -61,7 +61,12 @@ export class ArrayProperty extends PropertyGroup {
   }
 
   private addProperty(formData: {}) {
-    const newProperty = this.formPropertyFactory.createProperty(this.schema.items!, this.ui.$items, formData, this) as ObjectProperty;
+    const newProperty = this.formPropertyFactory.createProperty(
+      this.schema.items!,
+      this.ui.$items,
+      formData,
+      this as PropertyGroup,
+    ) as ObjectProperty;
     (this.properties as FormProperty[]).push(newProperty);
     return newProperty;
   }
