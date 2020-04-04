@@ -21,7 +21,10 @@ describe('Service: Menu', () => {
     {
       text: 'dashboard',
       link: '/dashboard',
-      children: [{ text: 'v1', link: '/dashboard/v1' }, { text: 'v2', link: '/dashboard/v2' }],
+      children: [
+        { text: 'v1', link: '/dashboard/v1' },
+        { text: 'v2', link: '/dashboard/v2' },
+      ],
     },
     {
       text: 'text',
@@ -51,7 +54,7 @@ describe('Service: Menu', () => {
           { provide: ACLService, useClass: MockACLService },
         ],
       });
-      srv = injector.get<MenuService>(MenuService);
+      srv = TestBed.inject<MenuService>(MenuService);
     });
 
     it('should create an instance', () => {
@@ -211,7 +214,10 @@ describe('Service: Menu', () => {
     });
 
     it('ACL', () => {
-      const newMenus = [{ text: 'new menu', acl: 'admin' }, { text: 'new menu', acl: 'user' }];
+      const newMenus = [
+        { text: 'new menu', acl: 'admin' },
+        { text: 'new menu', acl: 'user' },
+      ];
       srv.add(newMenus);
       expect(srv.menus[0]._aclResult).toBe(true);
       expect(srv.menus[1]._aclResult).toBe(false);
@@ -346,10 +352,10 @@ describe('Service: Menu', () => {
           { provide: ACLService, useClass: MockACLService },
         ],
       });
-      srv = injector.get<MenuService>(MenuService);
+      srv = TestBed.inject<MenuService>(MenuService);
       spyOn(srv, 'resume');
       expect(srv.resume).not.toHaveBeenCalled();
-      injector.get(ALAIN_I18N_TOKEN).use('en');
+      TestBed.inject(ALAIN_I18N_TOKEN).use('en');
       expect(srv.resume).toHaveBeenCalled();
     });
 
@@ -357,7 +363,7 @@ describe('Service: Menu', () => {
       injector = TestBed.configureTestingModule({
         providers: [MenuService, { provide: ACLService, useClass: MockACLService }],
       });
-      srv = injector.get<MenuService>(MenuService);
+      srv = TestBed.inject<MenuService>(MenuService);
       expect(true).toBe(true);
     });
   });

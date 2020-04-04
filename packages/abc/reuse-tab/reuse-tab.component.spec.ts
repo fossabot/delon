@@ -92,8 +92,8 @@ describe('abc: reuse-tab', () => {
     tick();
     fixture.detectChanges();
 
-    srv = injector.get<ReuseTabService>(ReuseTabService);
-    const router = injector.get<Router>(Router) as Router;
+    srv = TestBed.inject<ReuseTabService>(ReuseTabService);
+    const router = TestBed.inject<Router>(Router) as Router;
     router.routeReuseStrategy = new ReuseTabStrategy(srv);
 
     page = new PageObject();
@@ -476,7 +476,7 @@ describe('abc: reuse-tab', () => {
       let ss: ScrollService;
       let getScrollPositionSpy: jasmine.Spy;
       beforeEach(() => {
-        ss = injector.get(ScrollService) as ScrollService;
+        ss = TestBed.inject(ScrollService) as ScrollService;
         getScrollPositionSpy = spyOn(ss, 'getScrollPosition').and.returnValue([0, 666]);
         spyOn(ss, 'scrollToPosition');
       });
@@ -516,7 +516,7 @@ describe('abc: reuse-tab', () => {
       }));
       describe('should be delay trigger when has setting scrollPositionRestoration', () => {
         it('with disabled (not delay)', fakeAsync(() => {
-          const cog = injector.get(ROUTER_CONFIGURATION) as ExtraOptions;
+          const cog = TestBed.inject(ROUTER_CONFIGURATION) as ExtraOptions;
           cog.scrollPositionRestoration = 'disabled';
           srv.keepingScroll = true;
           page
@@ -528,7 +528,7 @@ describe('abc: reuse-tab', () => {
             });
         }));
         it('with enabled (must delay)', fakeAsync(() => {
-          const cog = injector.get(ROUTER_CONFIGURATION) as ExtraOptions;
+          const cog = TestBed.inject(ROUTER_CONFIGURATION) as ExtraOptions;
           cog.scrollPositionRestoration = 'enabled';
           srv.keepingScroll = true;
           page
@@ -541,7 +541,7 @@ describe('abc: reuse-tab', () => {
             });
         }));
         it('with top (must delay)', fakeAsync(() => {
-          const cog = injector.get(ROUTER_CONFIGURATION) as ExtraOptions;
+          const cog = TestBed.inject(ROUTER_CONFIGURATION) as ExtraOptions;
           cog.scrollPositionRestoration = 'top';
           srv.keepingScroll = true;
           page
@@ -556,7 +556,7 @@ describe('abc: reuse-tab', () => {
       });
       describe('#keepingScrollContainer', () => {
         beforeEach(() => {
-          const cog = injector.get(ROUTER_CONFIGURATION) as ExtraOptions;
+          const cog = TestBed.inject(ROUTER_CONFIGURATION) as ExtraOptions;
           cog.scrollPositionRestoration = 'disabled';
           layoutComp.keepingScroll = true;
         });
@@ -611,7 +611,7 @@ describe('abc: reuse-tab', () => {
       page.to('#e').expectAttr(1, 'title', 'zh');
 
       i18nResult = 'en';
-      injector.get(ALAIN_I18N_TOKEN).use('en');
+      TestBed.inject(ALAIN_I18N_TOKEN).use('en');
       tick(101);
       page.expectAttr(1, 'title', 'en');
     }));
@@ -620,7 +620,7 @@ describe('abc: reuse-tab', () => {
       createComp();
       page.to('#b').openContextMenu(1);
       expect(document.querySelector('[data-type="close"]')!.textContent).toBe(zh_CN.reuseTab.close);
-      injector.get<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
+      TestBed.inject<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
       fixture.detectChanges();
       page.to('#a').openContextMenu(1);
       expect(document.querySelector('[data-type="close"]')!.textContent).toBe(en_US.reuseTab.close);

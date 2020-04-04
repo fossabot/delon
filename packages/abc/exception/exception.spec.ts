@@ -49,7 +49,7 @@ describe('abc: exception', () => {
   });
 
   it('#i18n', () => {
-    injector.get<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
+    TestBed.inject<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
     context.type = 403;
     fixture.detectChanges();
     expect((dl.query(By.css('.exception__cont-desc')).nativeElement as HTMLElement).innerText).toBe(en_US.exception['403']);

@@ -39,8 +39,8 @@ describe('auth: SimpleGuard', () => {
         DelonAuthModule,
       ],
     });
-    srv = injector.get(DA_SERVICE_TOKEN);
-    router = injector.get<Router>(Router);
+    srv = TestBed.inject(DA_SERVICE_TOKEN);
+    router = TestBed.inject<Router>(Router);
     srv.set({ token: `11` });
   });
 
@@ -81,7 +81,7 @@ describe('auth: SimpleGuard', () => {
 
   it(`should be support load module route`, fakeAsync(() => {
     // tslint:disable-next-line: deprecation
-    const loader = injector.get(NgModuleFactoryLoader);
+    const loader = TestBed.inject(NgModuleFactoryLoader);
     loader.stubbedModules = { expected: AModule };
     router.navigateByUrl('/lazy').then(res => {
       expect(res).toBe(true);

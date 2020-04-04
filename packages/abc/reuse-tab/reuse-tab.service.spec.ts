@@ -1,6 +1,7 @@
 import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { ActivatedRoute, Router, RouteReuseStrategy } from '@angular/router';
 import { MenuService } from '@delon/theme';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { filter } from 'rxjs/operators';
 import { ReuseTabMatchMode, ReuseTitle } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
@@ -43,9 +44,9 @@ describe('abc: reuse-tab(service)', () => {
         { provide: Router, useFactory: () => new MockRouter() },
       ].concat(providers),
     });
-    srv = injector.get<ReuseTabService>(ReuseTabService);
-    menuSrv = injector.get<MenuService>(MenuService, undefined);
-    router = injector.get<Router>(Router);
+    srv = TestBed.inject<ReuseTabService>(ReuseTabService);
+    menuSrv = TestBed.inject<MenuService>(MenuService, undefined);
+    router = TestBed.inject<Router>(Router) as NzSafeAny;
   }
 
   function genCached(count: number, urlTpl: string = `a/{index}`) {

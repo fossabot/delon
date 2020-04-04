@@ -13,7 +13,7 @@ describe('abc: loading', () => {
       imports: [LoadingModule],
       declarations: [TestComponent],
     });
-    srv = injector.get(LoadingService);
+    srv = TestBed.inject(LoadingService);
     fixture = TestBed.createComponent(TestComponent);
   });
 

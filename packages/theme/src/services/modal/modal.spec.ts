@@ -21,7 +21,7 @@ describe('theme: ModalHelper', () => {
 
     injector = TestBed.configureTestingModule({ imports: [TestModule] });
     fixture = TestBed.createComponent(TestComponent);
-    modal = injector.get<ModalHelper>(ModalHelper);
+    modal = TestBed.inject<ModalHelper>(ModalHelper);
   });
 
   afterEach(() => {
@@ -193,7 +193,7 @@ describe('theme: ModalHelper', () => {
     });
     it('should be custom modal options', (done: () => void) => {
       const id = '' + +new Date();
-      const zIndex = 980;
+      const nzZIndex = 980;
       modal
         .static(
           TestModalComponent,
@@ -203,7 +203,7 @@ describe('theme: ModalHelper', () => {
           },
           'sm',
           {
-            zIndex,
+            nzZIndex,
           },
         )
         .subscribe(res => {
@@ -252,9 +252,7 @@ describe('theme: ModalHelper', () => {
 });
 
 @Component({
-  template: `
-    <div id="modal{{ id }}">modal{{ id }}</div>
-  `,
+  template: ` <div id="modal{{ id }}">modal{{ id }}</div> `,
 })
 class TestModalComponent {
   id = '';

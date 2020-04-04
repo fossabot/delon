@@ -63,10 +63,10 @@ describe('auth: simple.interceptor', () => {
         { provide: DA_SERVICE_TOKEN, useClass: MockTokenService },
       ],
     });
-    if (tokenData) injector.get(DA_SERVICE_TOKEN).set(tokenData);
+    if (tokenData) TestBed.inject(DA_SERVICE_TOKEN).set(tokenData);
 
-    http = injector.get<HttpClient>(HttpClient);
-    httpBed = injector.get(HttpTestingController as Type<HttpTestingController>);
+    http = TestBed.inject<HttpClient>(HttpClient);
+    httpBed = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   }
 
   describe('[token position]', () => {

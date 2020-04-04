@@ -24,8 +24,10 @@ export class DownFileDirective {
   /** 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename` */
   @Input('file-name') fileName: string | ((rep: HttpResponse<Blob>) => string);
   /** 成功回调 */
+  // tslint:disable-next-line:no-output-native
   @Output() readonly success = new EventEmitter<HttpResponse<Blob>>();
   /** 错误回调 */
+  // tslint:disable-next-line:no-output-native
   @Output() readonly error = new EventEmitter<any>();
 
   private getDisposition(data: string | null): NzSafeAny {

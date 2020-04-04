@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NzTreeBaseService, NzTreeNode } from 'ng-zorro-antd/core/tree';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { deepCopy } from '../other/other';
 import { DelonUtilConfig } from '../util.config';
 import { DelonUtilModule } from '../util.module';
@@ -20,9 +20,10 @@ describe('utils: array', () => {
 
   describe('#treeToArr', () => {
     beforeEach(() => {
-      srv = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [DelonUtilModule],
-      }).get<ArrayService>(ArrayService);
+      });
+      srv = TestBed.inject<ArrayService>(ArrayService);
     });
     it('should be tree to array', () => {
       const res = srv.treeToArr([
@@ -69,9 +70,10 @@ describe('utils: array', () => {
 
   describe('#arrToTree', () => {
     beforeEach(() => {
-      srv = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [DelonUtilModule],
-      }).get<ArrayService>(ArrayService);
+      });
+      srv = TestBed.inject<ArrayService>(ArrayService);
     });
     it('should be array to tree', () => {
       const res = srv.arrToTree([
@@ -100,9 +102,10 @@ describe('utils: array', () => {
 
   describe('[NzTreeNode]', () => {
     beforeEach(() => {
-      srv = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [DelonUtilModule],
-      }).get<ArrayService>(ArrayService);
+      });
+      srv = TestBed.inject<ArrayService>(ArrayService);
       page = new PageTreeNode();
     });
 
@@ -187,7 +190,7 @@ describe('utils: array', () => {
 
   describe('[config]', () => {
     beforeEach(() => {
-      srv = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [DelonUtilModule],
         providers: [
           {
@@ -199,7 +202,8 @@ describe('utils: array', () => {
             },
           },
         ],
-      }).get<ArrayService>(ArrayService);
+      });
+      srv = TestBed.inject<ArrayService>(ArrayService);
     });
     it('should be tree to array', () => {
       const id = 100;
@@ -233,7 +237,7 @@ describe('utils: array', () => {
       if (value == null) {
         expect(item == null).toBe(true);
       } else {
-        expect(item![field]).toBe(value);
+        expect((item! as NzSafeAny)[field]).toBe(value);
       }
       return this;
     }

@@ -32,7 +32,7 @@ describe('mock: service', () => {
       imports: [DelonMockModule.forRoot(options)],
       providers: [],
     });
-    srv = injector.get<MockService>(MockService);
+    srv = injector.inject<MockService>(MockService);
     spyOn(console, 'log');
     spyOn(console, 'group');
     spyOn(console, 'groupEnd');

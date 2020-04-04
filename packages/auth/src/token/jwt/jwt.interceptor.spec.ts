@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Component, Type } from '@angular/core';
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -23,12 +23,11 @@ function genModel(
 }
 
 describe('auth: jwt.interceptor', () => {
-  let injector: TestBedStatic;
   let http: HttpClient;
   let httpBed: HttpTestingController;
 
   function genModule(options: DelonAuthConfig, tokenData?: JWTTokenModel) {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [MockComponent],
       imports: [
         HttpClientTestingModule,
@@ -45,9 +44,9 @@ describe('auth: jwt.interceptor', () => {
         { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
       ],
     });
-    if (tokenData) injector.get(DA_SERVICE_TOKEN).set(tokenData);
-    http = injector.get<HttpClient>(HttpClient);
-    httpBed = injector.get(HttpTestingController as Type<HttpTestingController>);
+    if (tokenData) TestBed.inject(DA_SERVICE_TOKEN).set(tokenData);
+    http = TestBed.inject<HttpClient>(HttpClient);
+    httpBed = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   }
 
   it('should be add token', (done: () => void) => {

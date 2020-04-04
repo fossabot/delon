@@ -60,7 +60,7 @@ describe('abc: xlsx', () => {
         { provide: LazyService, useClass: MockLazyService },
       ],
     });
-    srv = injector.get<XlsxService>(XlsxService);
+    srv = TestBed.inject<XlsxService>(XlsxService);
   }
 
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe('abc: xlsx', () => {
     it('should be load xlsx lib when not found XLSX in window', () => {
       delete (window as any).XLSX;
       genModule();
-      const lazySrv: LazyService = injector.get<LazyService>(LazyService);
+      const lazySrv: LazyService = TestBed.inject<LazyService>(LazyService);
       spyOn(lazySrv, 'load').and.callFake(() => Promise.reject());
       expect(lazySrv.load).not.toHaveBeenCalled();
       srv.import('/1.xlsx').catch(() => {});

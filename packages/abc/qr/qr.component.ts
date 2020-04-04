@@ -39,6 +39,7 @@ export class QRComponent implements OnChanges {
   @Input() @InputNumber() padding: number;
   @Input() @InputNumber() size: number;
   @Input() value: string;
+  // tslint:disable-next-line:no-output-native
   @Output() readonly change = new EventEmitter<string>();
 
   // #endregion

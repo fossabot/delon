@@ -17,13 +17,13 @@ describe('acl: guard', () => {
     injector = TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), DelonACLModule.forRoot()],
     });
-    srv = injector.get<ACLGuard>(ACLGuard);
-    acl = injector.get<ACLService>(ACLService);
+    srv = TestBed.inject<ACLGuard>(ACLGuard);
+    acl = TestBed.inject<ACLService>(ACLService);
     acl.set({
       role: ['user'],
       ability: [1, 2, 3],
     } as ACLType);
-    routerSpy = spyOn(injector.get<Router>(Router), 'navigateByUrl');
+    routerSpy = spyOn(TestBed.inject<Router>(Router), 'navigateByUrl');
   });
 
   it(`should load route when no-specify permission`, (done: () => void) => {

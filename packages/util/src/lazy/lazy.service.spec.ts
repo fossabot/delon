@@ -41,13 +41,13 @@ describe('utils: lazy', () => {
   beforeEach(() => {
     isIE = false;
     testStatus = 'ok';
-    const injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [DelonUtilModule],
       providers: [{ provide: DOCUMENT, useClass: MockDocument }],
     });
-    srv = injector.get(LazyService);
+    srv = TestBed.inject(LazyService);
     srv.clear();
-    doc = injector.get(DOCUMENT);
+    doc = TestBed.inject(DOCUMENT);
   });
 
   describe('#IE', () => {

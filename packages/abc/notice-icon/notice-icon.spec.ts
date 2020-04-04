@@ -98,7 +98,7 @@ describe('abc: notice-icon', () => {
     fixture.detectChanges();
     const a = document.querySelector('.notice-icon__notfound')! as HTMLElement;
     expect(a.innerText).toBe(zh_CN.noticeIcon.emptyText);
-    const srv = injector.get<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
+    const srv = TestBed.inject<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
     srv.setLocale(en_US);
     fixture.detectChanges();
     expect(a.innerText).toBe(en_US.noticeIcon.emptyText);

@@ -21,7 +21,7 @@ describe('theme: DrawerHelper', () => {
 
     injector = TestBed.configureTestingModule({ imports: [TestModule] });
     fixture = TestBed.createComponent(TestComponent);
-    drawer = injector.get<DrawerHelper>(DrawerHelper);
+    drawer = injector.inject<DrawerHelper>(DrawerHelper);
   });
 
   afterEach(() => {
@@ -278,9 +278,7 @@ describe('theme: DrawerHelper', () => {
 });
 
 @Component({
-  template: `
-    <div id="drawer{{ id }}">drawer{{ id }}</div>
-  `,
+  template: ` <div id="drawer{{ id }}">drawer{{ id }}</div> `,
 })
 class TestDrawerComponent {
   id: string = '';

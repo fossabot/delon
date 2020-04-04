@@ -42,7 +42,7 @@ describe('abc: lodop', () => {
         { provide: LodopConfig, useFactory: fnLodopConfig },
       ],
     });
-    srv = injector.get<LodopService>(LodopService);
+    srv = TestBed.inject<LodopService>(LodopService);
     isErrRequest = false;
     loadCount = 0;
     isNullLodop = false;

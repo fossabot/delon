@@ -32,7 +32,7 @@ describe('abc: full-content', () => {
     dl = fixture.debugElement;
     context = fixture.componentInstance;
     fixture.detectChanges();
-    doc = injector.get(DOCUMENT);
+    doc = TestBed.inject(DOCUMENT);
     bodyEl = document.querySelector('body') as HTMLBodyElement;
     el = dl.query(By.css('full-content')).nativeElement as HTMLElement;
   }
@@ -96,7 +96,7 @@ describe('abc: full-content', () => {
     });
     it('should be switch fullscreen via service', () => {
       createComp();
-      const srv = injector.get(FullContentService);
+      const srv = TestBed.inject(FullContentService);
       expect(context.fullscreen).toBe(false);
       srv.toggle();
       fixture.detectChanges();

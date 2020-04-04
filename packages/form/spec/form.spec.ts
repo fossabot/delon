@@ -251,7 +251,7 @@ describe('form: component', () => {
       });
       it('should be update button text when i18n changed', () => {
         page.checkElText('.ant-btn-primary', '提交');
-        const i18n = injector.get<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
+        const i18n = TestBed.inject<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
         i18n.setLocale(en_US);
         fixture.detectChanges();
         page.checkElText('.ant-btn-primary', 'Submit');
@@ -498,7 +498,7 @@ describe('form: component', () => {
           .checkCls('sf-string', 'test-cls');
       });
       it('should get all registered widgets', () => {
-        const wr = injector.get(WidgetRegistry) as WidgetRegistry;
+        const wr = TestBed.inject(WidgetRegistry) as WidgetRegistry;
         expect(Object.keys(wr.widgets).length).toBeGreaterThan(0);
       });
     });
@@ -667,7 +667,7 @@ describe('form: component', () => {
         };
         page.newSchema(s, undefined, { a: '', arr: [{ name: '' }] });
         expect(page.getProperty('/a').errors![0].message).toBe(context.comp.locale.error.required);
-        const i18n = injector.get<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
+        const i18n = TestBed.inject(DelonLocaleService);
         i18n.setLocale(en_US);
         fixture.detectChanges();
         expect(page.getProperty('/a').errors![0].message).toBe(context.comp.locale.error.required);
@@ -714,7 +714,7 @@ describe('form: component', () => {
     it('should working', fakeAsync(() => {
       ({ fixture, dl, context } = createTestContext(TestFormComponent));
       createComp();
-      const acl = injector.get<ACLService>(ACLService);
+      const acl = TestBed.inject<ACLService>(ACLService);
       acl.setFull(false);
       acl.setRole(['admin']);
       const s: SFSchema = {
@@ -743,7 +743,7 @@ describe('form: component', () => {
     it('should working', fakeAsync(() => {
       ({ fixture, dl, context } = createTestContext(TestFormComponent));
       createComp();
-      const i18n = injector.get(ALAIN_I18N_TOKEN) as AlainI18NService;
+      const i18n = TestBed.inject(ALAIN_I18N_TOKEN) as AlainI18NService;
       let lang = 'en';
       spyOn(i18n, 'fanyi').and.callFake(((key: string) => {
         if (key === 'null') return null;

@@ -78,12 +78,12 @@ describe('auth: base.interceptor', () => {
         { provide: DA_SERVICE_TOKEN, useClass: MockTokenService },
       ].concat(provider),
     });
-    if (tokenData) injector.get(DA_SERVICE_TOKEN).set(tokenData);
+    if (tokenData) TestBed.inject(DA_SERVICE_TOKEN).set(tokenData);
 
-    router = injector.get<Router>(Router);
+    router = TestBed.inject<Router>(Router);
     spyOn(router, 'navigate');
-    http = injector.get<HttpClient>(HttpClient);
-    httpBed = injector.get(HttpTestingController as Type<HttpTestingController>);
+    http = TestBed.inject<HttpClient>(HttpClient);
+    httpBed = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   }
 
   describe('[ignores]', () => {
@@ -157,7 +157,7 @@ describe('auth: base.interceptor', () => {
           (err: any) => {
             expect(err.status).toBe(401);
             setTimeout(() => {
-              expect(injector.get<Router>(Router).navigate).toHaveBeenCalled();
+              expect(TestBed.inject<Router>(Router).navigate).toHaveBeenCalled();
               done();
             }, 20);
           },
@@ -174,7 +174,7 @@ describe('auth: base.interceptor', () => {
           (err: any) => {
             expect(err.status).toBe(401);
             setTimeout(() => {
-              expect(injector.get(DOCUMENT).location.href).toBe(login_url);
+              expect(TestBed.inject(DOCUMENT).location.href).toBe(login_url);
               done();
             }, 20);
           },
@@ -206,7 +206,7 @@ describe('auth: base.interceptor', () => {
           done();
         },
         () => {
-          const tokenSrv = injector.get(DA_SERVICE_TOKEN) as MockTokenService;
+          const tokenSrv = TestBed.inject(DA_SERVICE_TOKEN) as MockTokenService;
           expect(tokenSrv.referrer).not.toBeNull();
           expect(tokenSrv.referrer.url).toBe('/');
           done();

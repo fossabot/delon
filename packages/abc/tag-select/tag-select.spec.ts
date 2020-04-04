@@ -55,7 +55,7 @@ describe('abc: tag-select', () => {
   it('#i18n', () => {
     const triEl = dl.query(By.css('.tag-select__trigger')).nativeElement as HTMLElement;
     expect(triEl.innerText).toContain(zh_CN.tagSelect.expand);
-    injector.get<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
+    TestBed.inject<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
     fixture.detectChanges();
     expect(triEl.innerText).toBe(en_US.tagSelect.expand);
   });

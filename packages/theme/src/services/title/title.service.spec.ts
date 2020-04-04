@@ -3,7 +3,7 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { AlainThemeModule } from '../../theme.module';
 import { ALAIN_I18N_TOKEN, AlainI18NService, AlainI18NServiceFake } from '../i18n/i18n';
 import { Menu } from '../menu/interface';
@@ -44,9 +44,9 @@ describe('Service: Title', () => {
       imports: [AlainThemeModule, RouterTestingModule],
       providers: [TitleService, MenuService, { provide: Title, useClass: TestTitleService }, ...i18nProvider].concat(providers),
     });
-    title = TestBed.get(Title);
-    srv = TestBed.get<TitleService>(TitleService);
-    i18n = TestBed.get(ALAIN_I18N_TOKEN);
+    title = TestBed.inject<Title>(Title) as NzSafeAny;
+    srv = TestBed.inject<TitleService>(TitleService);
+    i18n = TestBed.inject(ALAIN_I18N_TOKEN);
   }
 
   afterEach(() => srv.ngOnDestroy());

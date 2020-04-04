@@ -109,10 +109,10 @@ describe('abc: sidebar-nav', () => {
     dl = fixture.debugElement;
     context = fixture.componentInstance;
     fixture.detectChanges();
-    router = injector.get<Router>(Router);
-    setSrv = injector.get<SettingsService>(SettingsService);
-    menuSrv = injector.get<MenuService>(MenuService);
-    doc = injector.get(DOCUMENT);
+    router = TestBed.inject<Router>(Router);
+    setSrv = TestBed.inject<SettingsService>(SettingsService);
+    menuSrv = TestBed.inject<MenuService>(MenuService);
+    doc = TestBed.inject(DOCUMENT);
     menuSrv.add(deepCopy(MOCKMENUS));
     page = new PageObject();
     if (needMockNavigateByUrl) spyOn(router, 'navigateByUrl');
@@ -142,7 +142,7 @@ describe('abc: sidebar-nav', () => {
       describe('should be navigate external link', () => {
         it('with target is _blank', () => {
           createComp();
-          const win = injector.get(WINDOW) as MockWindow;
+          const win = TestBed.inject(WINDOW) as MockWindow;
           spyOn(win, 'open');
           const itemEl = page.getEl<HTMLElement>('.sidebar-nav__item [data-id="6"]');
           itemEl!.click();
@@ -150,7 +150,7 @@ describe('abc: sidebar-nav', () => {
         });
         it('with target is _top', () => {
           createComp();
-          const win = injector.get(WINDOW) as MockWindow;
+          const win = TestBed.inject(WINDOW) as MockWindow;
           const itemEl = page.getEl<HTMLElement>('.sidebar-nav__item [data-id="7"]');
           itemEl!.click();
           expect(win.location.href).toBe(`//ng-alain.com/top`);
@@ -479,7 +479,7 @@ describe('abc: sidebar-nav', () => {
       fixture = TestBed.createComponent(TestComponent);
       dl = fixture.debugElement;
       context = fixture.componentInstance;
-      menuSrv = injector.get<MenuService>(MenuService);
+      menuSrv = TestBed.inject<MenuService>(MenuService);
       fixture.detectChanges();
       createComp(false);
       menuSrv.add([

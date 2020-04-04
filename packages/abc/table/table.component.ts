@@ -205,10 +205,12 @@ export class STComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() @InputBoolean() responsive: boolean = true;
   @Input() @InputBoolean() responsiveHideHeaderFooter: boolean;
   /** 请求异常时回调 */
+  // tslint:disable-next-line:no-output-native
   @Output() readonly error = new EventEmitter<STError>();
   /**
    * 变化时回调，包括：`pi`、`ps`、`checkbox`、`radio`、`sort`、`filter`、`click`、`dblClick` 变动
    */
+  // tslint:disable-next-line:no-output-native
   @Output() readonly change = new EventEmitter<STChange>();
 
   /**

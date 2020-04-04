@@ -42,8 +42,8 @@ describe('abc: page-header', () => {
     dl = fixture.debugElement;
     context = fixture.componentInstance;
     if (other.created !== false) fixture.detectChanges();
-    menuSrv = injector.get<MenuService>(MenuService);
-    router = injector.get<Router>(Router);
+    menuSrv = TestBed.inject<MenuService>(MenuService);
+    router = TestBed.inject<Router>(Router);
   }
 
   function isExists(cls: string, stauts: boolean = true) {
@@ -82,8 +82,8 @@ describe('abc: page-header', () => {
     describe('[property]', () => {
       beforeEach(() => {
         ({ fixture, dl, context } = createTestContext(TestComponent));
-        menuSrv = injector.get<MenuService>(MenuService);
-        router = injector.get<Router>(Router);
+        menuSrv = TestBed.inject<MenuService>(MenuService);
+        router = TestBed.inject<Router>(Router);
         fixture.detectChanges();
       });
       describe('#title', () => {
@@ -110,7 +110,7 @@ describe('abc: page-header', () => {
           isExists('nz-affix', true);
         });
         it('should be update position when switch collapsed', () => {
-          const srv = injector.get(SettingsService);
+          const srv = TestBed.inject(SettingsService);
           const affixComp = dl.query(By.directive(NzAffixComponent)).injector.get<NzAffixComponent>(NzAffixComponent, undefined);
           spyOn(affixComp, 'updatePosition');
           srv.setLayout('collapsed', true);
@@ -134,8 +134,8 @@ describe('abc: page-header', () => {
     describe('[generation breadcrumb]', () => {
       beforeEach(() => {
         ({ fixture, dl, context } = createTestContext(TestAutoBreadcrumbComponent));
-        menuSrv = injector.get<MenuService>(MenuService);
-        router = injector.get<Router>(Router);
+        menuSrv = TestBed.inject<MenuService>(MenuService);
+        router = TestBed.inject<Router>(Router);
         fixture.detectChanges();
 
         menuSrv.add([
@@ -229,9 +229,9 @@ describe('abc: page-header', () => {
           useFactory: () => new MockI18NServiceFake(),
         });
         ({ fixture, dl, context } = createTestContext(TestI18nComponent));
-        i18n = injector.get(ALAIN_I18N_TOKEN);
-        menuSrv = injector.get<MenuService>(MenuService);
-        router = injector.get<Router>(Router);
+        i18n = TestBed.inject(ALAIN_I18N_TOKEN);
+        menuSrv = TestBed.inject<MenuService>(MenuService);
+        router = TestBed.inject<Router>(Router);
         fixture.detectChanges();
       });
       it('should be refresh when i18n changed', () => {
@@ -389,8 +389,8 @@ describe('abc: page-header', () => {
             },
           ],
         });
-        titleSrv = injector.get<TitleService>(TitleService);
-        reuseSrv = injector.get<ReuseTabService>(ReuseTabService);
+        titleSrv = TestBed.inject<TitleService>(TitleService);
+        reuseSrv = TestBed.inject<ReuseTabService>(ReuseTabService);
         context.syncTitle = true;
       });
 

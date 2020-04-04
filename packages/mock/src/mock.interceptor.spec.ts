@@ -69,8 +69,8 @@ describe('mock: interceptor', () => {
       ].concat(imports),
       providers: ([] as any[]).concat(providers || []),
     });
-    http = injector.get<HttpClient>(HttpClient);
-    httpMock = injector.get(HttpTestingController as Type<HttpTestingController>);
+    http = TestBed.inject<HttpClient>(HttpClient);
+    httpMock = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
     if (spyConsole) {
       spyOn(console, 'log');
       spyOn(console, 'warn');
@@ -219,8 +219,8 @@ describe('mock: interceptor', () => {
 
     it('should work', fakeAsync(() => {
       // tslint:disable-next-line: deprecation
-      const loader = injector.get(NgModuleFactoryLoader);
-      const router = injector.get<Router>(Router);
+      const loader = TestBed.inject(NgModuleFactoryLoader);
+      const router = TestBed.inject<Router>(Router);
       @Component({
         selector: 'lazy',
         template: '<router-outlet></router-outlet>',

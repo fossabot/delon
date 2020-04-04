@@ -32,7 +32,7 @@ describe('abc: qr', () => {
     beforeEach(() => {
       ({ fixture, dl, context } = createTestContext(TestComponent));
       fixture.detectChanges();
-      srv = injector.get<QRService>(QRService);
+      srv = TestBed.inject<QRService>(QRService);
     });
 
     function getDataURL() {

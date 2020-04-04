@@ -17,7 +17,7 @@ describe('cache: service', () => {
   const KEY = 'a';
 
   function getHTC(): HttpTestingController {
-    return injector.get(HttpTestingController as Type<HttpTestingController>);
+    return TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   }
 
   beforeEach(() => {
@@ -47,7 +47,7 @@ describe('cache: service', () => {
       providers,
     });
 
-    srv = injector.get<CacheService>(CacheService);
+    srv = TestBed.inject<CacheService>(CacheService);
   }
 
   it('should be specify a global config', () => {

@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { Observable, of, Subject } from 'rxjs';
 
 import { ALAIN_I18N_TOKEN, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, en_US, ModalHelper } from '@delon/theme';
@@ -120,7 +121,7 @@ describe('abc: table', () => {
     });
     if (other.template) TestBed.overrideTemplate(TestComponent, other.template);
     // ALAIN_I18N_TOKEN 默认为 root 会导致永远都会存在
-    i18nSrv = injector.get(ALAIN_I18N_TOKEN);
+    i18nSrv = TestBed.inject(ALAIN_I18N_TOKEN);
     if (other.createComp) {
       createComp(other.minColumn, TestComponent);
     }
@@ -211,10 +212,7 @@ describe('abc: table', () => {
           });
           it('should be unchecked via clearCheck', done => {
             page.newColumn([{ title: '', index: 'id', type: 'checkbox' }]).then(() => {
-              page
-                .expectData(1, 'checked', undefined)
-                .click('.st__body .ant-checkbox-wrapper')
-                .expectData(1, 'checked', true);
+              page.expectData(1, 'checked', undefined).click('.st__body .ant-checkbox-wrapper').expectData(1, 'checked', true);
               comp.clearCheck();
               page.expectData(1, 'checked', false);
               done();
@@ -247,10 +245,7 @@ describe('abc: table', () => {
           });
           it('should be unchecked via clearRadio', done => {
             page.newColumn([{ title: '', index: 'id', type: 'radio' }]).then(() => {
-              page
-                .expectData(1, 'checked', undefined)
-                .click('.st__body .ant-radio-wrapper')
-                .expectData(1, 'checked', true);
+              page.expectData(1, 'checked', undefined).click('.st__body .ant-radio-wrapper').expectData(1, 'checked', true);
               comp.clearRadio();
               page.expectData(1, 'checked', false);
               done();
@@ -280,7 +275,7 @@ describe('abc: table', () => {
             });
           });
           it('should be navigate url when click is string value', done => {
-            const router = injector.get<Router>(Router);
+            const router = TestBed.inject<Router>(Router);
             spyOn(router, 'navigateByUrl');
             context.data = [{ link: '/a' }];
             page
@@ -416,10 +411,7 @@ describe('abc: table', () => {
                 },
               ])
               .then(() => {
-                page
-                  .expectCell('Y', 1, 1, '', true)
-                  .expectCell('N', 2, 1, '', true)
-                  .expectCell('N', 3, 1, '', true);
+                page.expectCell('Y', 1, 1, '', true).expectCell('N', 2, 1, '', true).expectCell('N', 3, 1, '', true);
                 done();
               });
           });
@@ -645,7 +637,7 @@ describe('abc: table', () => {
                   ],
                 },
               ];
-              const modalHelp = injector.get<ModalHelper>(ModalHelper);
+              const modalHelp = TestBed.inject<ModalHelper>(ModalHelper);
               const mock$ = new Subject();
               spyOn(modalHelp, 'create').and.callFake(() => mock$);
               page.newColumn(columns).then(() => {
@@ -676,7 +668,7 @@ describe('abc: table', () => {
                   ],
                 },
               ];
-              const modalHelp = injector.get<ModalHelper>(ModalHelper);
+              const modalHelp = TestBed.inject<ModalHelper>(ModalHelper);
               const mock$ = new Subject();
               spyOn(modalHelp, 'createStatic').and.callFake(() => mock$);
               page.newColumn(columns).then(() => {
@@ -709,7 +701,7 @@ describe('abc: table', () => {
                   ],
                 },
               ];
-              const drawerHelp = injector.get<DrawerHelper>(DrawerHelper);
+              const drawerHelp = TestBed.inject<DrawerHelper>(DrawerHelper);
               const mock$ = new Subject();
               spyOn(drawerHelp, 'create').and.callFake(() => mock$);
               page.newColumn(columns).then(() => {
@@ -732,7 +724,7 @@ describe('abc: table', () => {
                   buttons: [{ text: 'a', type: 'link', click: () => null }],
                 },
               ];
-              const router = injector.get<Router>(Router);
+              const router = TestBed.inject<Router>(Router);
               spyOn(router, 'navigateByUrl');
               page.newColumn(columns).then(() => {
                 expect(router.navigateByUrl).not.toHaveBeenCalled();
@@ -748,7 +740,7 @@ describe('abc: table', () => {
                   buttons: [{ text: 'a', type: 'link', click: () => '/a' }],
                 },
               ];
-              const router = injector.get<Router>(Router);
+              const router = TestBed.inject<Router>(Router);
               spyOn(router, 'navigateByUrl');
               page.newColumn(columns).then(() => {
                 expect(router.navigateByUrl).not.toHaveBeenCalled();
@@ -764,7 +756,7 @@ describe('abc: table', () => {
                   buttons: [{ text: 'a', type: 'link', click: () => '/a' }],
                 },
               ];
-              const router = injector.get<Router>(Router);
+              const router = TestBed.inject<Router>(Router);
               const spy = spyOn(router, 'navigateByUrl');
               page.newColumn(columns).then(() => {
                 page.clickCell('a');
@@ -810,7 +802,7 @@ describe('abc: table', () => {
     describe('[data source]', () => {
       let httpBed: HttpTestingController;
       beforeEach(() => {
-        httpBed = injector.get(HttpTestingController as Type<HttpTestingController>);
+        httpBed = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
       });
       it('support null data', done => {
         context.data = null;
@@ -1211,8 +1203,8 @@ describe('abc: table', () => {
       describe('should be set showExpand in row data', () => {
         it(`muse be hide expand icon`, done => {
           context.expandRowByClick = false;
-          context.data = deepCopy(USERS).slice(0, 1);
-          context.data![0].showExpand = false;
+          context.data = deepCopy(USERS).slice(0, 1) as NzSafeAny[];
+          context.data[0].showExpand = false;
           fixture.detectChanges();
           fixture.whenStable().then(() => {
             page.expectElCount('.ant-table-row-expand-icon', 0);
@@ -1926,7 +1918,7 @@ describe('abc: table', () => {
         page.newColumn([{ title: { i18n: curLang }, index: 'id' }]).then(() => {
           const el = page.getEl('.ant-pagination-total-text');
           expect(el.textContent!.trim()).toContain(`共`);
-          injector.get<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
+          TestBed.inject<DelonLocaleService>(DelonLocaleService).setLocale(en_US);
           fixture.detectChanges();
           expect(el.textContent!.trim()).toContain(`of`);
           done();
@@ -1951,7 +1943,7 @@ describe('abc: table', () => {
     changeSpy: jasmine.Spy;
     constructor() {
       spyOn(context, 'error');
-      this.changeSpy = spyOn(context, 'change').and.callFake((e => (this._changeData = e)) as any);
+      this.changeSpy = spyOn(context, 'change').and.callFake(((e: NzSafeAny) => (this._changeData = e)) as NzSafeAny);
       comp = context.comp;
     }
     get(cls: string): DebugElement {
@@ -2066,8 +2058,8 @@ describe('abc: table', () => {
       return this;
     }
     expectTotalPage(value: number): this {
-      const a = dl.query(By.css('nz-pagination'));
-      expect((a.componentInstance as NzPaginationComponent).lastIndex).toBe(value);
+      const a = dl.query(By.css('nz-pagination')).componentInstance as NzPaginationComponent;
+      expect(a.getLastIndex(a.nzTotal, a.nzPageSize)).toBe(value);
       return this;
     }
     expectCurrentPageTotal(value: number): this {

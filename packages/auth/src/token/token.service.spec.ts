@@ -39,7 +39,7 @@ describe('auth: token.service', () => {
       ],
     });
 
-    service = injector.get(DA_SERVICE_TOKEN);
+    service = injector.inject(DA_SERVICE_TOKEN);
   });
 
   it('#login_url', () => {
