@@ -1,11 +1,10 @@
+import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
-import { LayoutModule } from '@angular/cdk/layout';
 
 // angular i18n
 import { registerLocaleData } from '@angular/common';
@@ -30,7 +29,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { UEditorModule } from 'ngx-ueditor';
 import { JsonSchemaModule } from './shared/json-schema/json-schema.module';
 
-import { ExampleModule, EXAMPLE_COMPONENTS } from './routes/gen/examples';
+import { EXAMPLE_COMPONENTS, ExampleModule } from './routes/gen/examples';
 import { IconComponent } from './shared/components/icon/icon.component';
 
 export function StartupServiceFactory(startupService: StartupService) {
