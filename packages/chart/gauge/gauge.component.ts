@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 
 declare var G2: any;
 
@@ -31,7 +32,7 @@ export class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() @InputNumber() delay = 0;
   @Input() title: string;
-  @Input() @InputNumber() height;
+  @Input() @InputNumber() height: number;
   @Input() color = '#2f9cff';
   @Input() bgColor = '#f0f2f5';
   @Input() format: (text: string, item: {}, index: number) => string;
@@ -46,7 +47,7 @@ export class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     const Shape = G2.Shape;
     // 自定义Shape 部分
     Shape.registerShape('point', 'pointer', {
-      drawShape(cfg, group) {
+      drawShape(cfg: NzSafeAny, group: NzSafeAny) {
         const center = this.parsePoint({
           // 获取极坐标系下画布中心点
           x: 0,
@@ -86,11 +87,7 @@ export class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
       height,
       padding,
     }));
-    chart
-      .point({ generatePoints: true })
-      .position('value*1')
-      .shape('pointer')
-      .active(false);
+    chart.point({ generatePoints: true }).position('value*1').shape('pointer').active(false);
     chart.coord('polar', {
       startAngle: Math.PI * -1.2,
       endAngle: Math.PI * 0.2,

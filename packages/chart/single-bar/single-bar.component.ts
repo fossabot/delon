@@ -62,7 +62,7 @@ export class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
       .interval()
       .position('1*value')
       .opacity(1)
-      .label('value', val => ({
+      .label('value', (val: number) => ({
         formatter: format,
         offset: val > 0 ? 10 : -10,
         textStyle: {
@@ -95,7 +95,7 @@ export class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
     chart.set('padding', padding);
     chart
       .get('geoms')[0]
-      .color('value', val => (val > 0 ? plusColor : minusColor))
+      .color('value', (val: number) => (val > 0 ? plusColor : minusColor))
       .size(barSize);
     chart.repaint();
   }

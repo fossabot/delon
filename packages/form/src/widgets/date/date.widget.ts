@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import format from 'date-fns/format';
+import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { SFValue } from '../../interface';
 import { FormProperty } from '../../model/form.property';
-import { toBool, isDateFns } from '../../utils';
+import { isDateFns, toBool } from '../../utils';
 import { ControlUIWidget } from '../../widget';
 import { SFDateWidgetSchema } from './schema';
 
@@ -98,7 +98,7 @@ export class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements O
   }
 
   private get endProperty(): FormProperty {
-    return this.formProperty.parent!.properties![this.ui.end!];
+    return (this.formProperty.parent!.properties as { [key: string]: FormProperty })[this.ui.end!];
   }
 
   private setEnd(value: string | null) {

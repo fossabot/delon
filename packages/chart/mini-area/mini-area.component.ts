@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 
 declare var G2: any;
 
@@ -91,17 +92,12 @@ export class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
     chart
       .area()
       .position('x*y')
-      .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }))
+      .tooltip('x*y', (x: NzSafeAny, y: NzSafeAny) => ({ name: x, value: y + yTooltipSuffix }))
       .shape('smooth')
       .opacity(1);
 
     if (line) {
-      chart
-        .line()
-        .position('x*y')
-        .shape('smooth')
-        .opacity(1)
-        .tooltip(false);
+      chart.line().position('x*y').shape('smooth').opacity(1).tooltip(false);
     }
 
     chart.render();
@@ -116,7 +112,7 @@ export class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     const geoms = chart.get('geoms');
-    geoms.forEach(g => g.color(color));
+    geoms.forEach((g: NzSafeAny) => g.color(color));
     if (line) {
       geoms[1].color(borderColor).size(borderWidth);
     }

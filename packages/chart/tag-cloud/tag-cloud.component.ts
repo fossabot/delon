@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
@@ -52,7 +53,7 @@ export class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
   private initTagCloud() {
     // 给point注册一个词云的shape
     G2.Shape.registerShape('point', 'cloud', {
-      drawShape(cfg, container) {
+      drawShape(cfg: NzSafeAny, container: NzSafeAny) {
         const attrs = {
           fillOpacity: cfg.opacity,
           fontSize: cfg.origin._origin.size,
@@ -85,12 +86,7 @@ export class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
       showTitle: false,
     });
     chart.coord().reflect();
-    chart
-      .point()
-      .position('x*y')
-      .color('category')
-      .shape('cloud')
-      .tooltip('value*category');
+    chart.point().position('x*y').color('category').shape('cloud').tooltip('value*category');
 
     chart.render();
 
@@ -123,7 +119,7 @@ export class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit {
         }
         return random * 90; // 0, 90, 270
       },
-      fontSize: d => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0),
+      fontSize: (d: NzSafeAny) => (d.value ? ((d.value - min) / (max - min)) * (80 - 24) + 24 : 0),
     });
     chart.source(dv, {
       x: { nice: false },

@@ -13,7 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { updateHostClass, InputBoolean, InputNumber } from '@delon/util';
+import { InputBoolean, InputNumber, updateHostClass } from '@delon/util';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -63,12 +63,7 @@ export class G2PieComponent implements OnInit, OnDestroy, OnChanges {
 
   // #endregion
 
-  constructor(
-    private el: ElementRef,
-    private rend: Renderer2,
-    private ngZone: NgZone,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private el: ElementRef, private rend: Renderer2, private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
 
   private setCls() {
     const { el, rend, hasLegend, isPercent } = this;
@@ -92,7 +87,7 @@ export class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     if (this.isPercent) {
       this.select = false;
       this.tooltip = false;
-      this.percentColor = value => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5');
+      this.percentColor = (value: string) => (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5');
       this.data = [
         {
           x: '占比',
@@ -137,7 +132,7 @@ export class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     chart
       .intervalStack()
       .position('y')
-      .tooltip('x*percent', (name, p) => ({
+      .tooltip('x*percent', (name: string, p: number) => ({
         name,
         // 由于 hasLegend 会优先处理为百分比格式，因此无需要在 tooltip 中重新转换
         value: hasLegend ? p : (p * 100).toFixed(2),

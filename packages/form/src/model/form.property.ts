@@ -154,7 +154,7 @@ export abstract class FormProperty {
         result = base.getProperty(path);
       }
     }
-    return result;
+    return result!;
   }
 
   /** 查找根表单属性 */
@@ -335,14 +335,14 @@ export abstract class FormProperty {
 export abstract class PropertyGroup extends FormProperty {
   properties: { [key: string]: FormProperty } | FormProperty[] | null = null;
 
-  getProperty(path: string): FormProperty {
+  getProperty(path: string): FormProperty | undefined {
     const subPathIdx = path.indexOf(SF_SEQ);
     const propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
 
     let property = (this.properties as { [key: string]: FormProperty })[propertyId];
     if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
       const subPath = path.substr(subPathIdx + 1);
-      property = (property as PropertyGroup).getProperty(subPath);
+      property = (property as PropertyGroup).getProperty(subPath)!;
     }
     return property;
   }

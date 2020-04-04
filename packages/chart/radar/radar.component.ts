@@ -13,6 +13,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 
 declare var G2: any;
 
@@ -109,11 +110,7 @@ export class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
 
     chart.line().position('label*value');
 
-    chart
-      .point()
-      .position('label*value')
-      .shape('circle')
-      .size(3);
+    chart.point().position('label*value').shape('circle').size(3);
 
     chart.render();
 
@@ -134,7 +131,7 @@ export class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
       },
     });
 
-    chart.get('geoms').forEach(g => {
+    chart.get('geoms').forEach((g: NzSafeAny) => {
       g.color('name', colors);
     });
 
@@ -150,7 +147,7 @@ export class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     this.legendData = chart
       .get('geoms')[0]
       .get('dataArray')
-      .map((item: any) => {
+      .map((item: NzSafeAny[]) => {
         const origin = item[0]._origin;
         const result = {
           name: origin.name,

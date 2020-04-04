@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 
 declare var G2: any;
 
@@ -77,7 +78,7 @@ export class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy {
     chart
       .interval()
       .position('x*y')
-      .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }));
+      .tooltip('x*y', (x: NzSafeAny, y: NzSafeAny) => ({ name: x, value: y + yTooltipSuffix }));
 
     chart.render();
 
@@ -87,10 +88,7 @@ export class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy {
   private attachChart() {
     const { chart, height, padding, data, color, borderWidth } = this;
     if (!chart || !data || data.length <= 0) return;
-    chart
-      .get('geoms')[0]
-      .size(borderWidth)
-      .color(color);
+    chart.get('geoms')[0].size(borderWidth).color(color);
     chart.set('height', height);
     chart.set('padding', padding);
     chart.changeData(data);

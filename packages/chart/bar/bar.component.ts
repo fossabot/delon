@@ -12,6 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
@@ -89,7 +90,7 @@ export class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     chart
       .interval()
       .position('x*y')
-      .tooltip('x*y', (x, y) => ({ name: x, value: y }));
+      .tooltip('x*y', (x: NzSafeAny, y: NzSafeAny) => ({ name: x, value: y }));
 
     chart.render();
 
