@@ -1,8 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { fakeAsync, tick, TestBed, TestBedStatic } from '@angular/core/testing';
-import { deepCopy } from '@delon/util';
 import { Type } from '@angular/core';
+import { fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { deepCopy } from '@delon/util';
 
 import { AlainThemeConfig } from '../../theme.config';
 import { _HttpClient } from './http.client';

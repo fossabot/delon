@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AlainThemeModule } from '../../theme.module';
-import { AlainI18NService, AlainI18NServiceFake, ALAIN_I18N_TOKEN } from '../i18n/i18n';
+import { ALAIN_I18N_TOKEN, AlainI18NService, AlainI18NServiceFake } from '../i18n/i18n';
 import { Menu } from '../menu/interface';
 import { MenuService } from '../menu/menu.service';
 import { TitleService } from './title.service';

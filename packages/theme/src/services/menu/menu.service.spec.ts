@@ -3,7 +3,7 @@ import { filter } from 'rxjs/operators';
 
 import { ACLService } from '@delon/acl';
 import { deepCopy } from '@delon/util';
-import { AlainI18NServiceFake, ALAIN_I18N_TOKEN } from '../i18n/i18n';
+import { ALAIN_I18N_TOKEN, AlainI18NServiceFake } from '../i18n/i18n';
 
 import { Menu } from './interface';
 import { MenuService } from './menu.service';

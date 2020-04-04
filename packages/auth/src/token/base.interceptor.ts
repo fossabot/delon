@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injector, Optional } from '@angular/core';
+import { Injectable, Injector, Optional } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { DelonAuthConfig } from '../auth.config';
 import { ToLogin } from './helper';
@@ -13,6 +13,7 @@ class HttpAuthInterceptorHandler implements HttpHandler {
   }
 }
 
+@Injectable()
 export abstract class BaseInterceptor implements HttpInterceptor {
   constructor(@Optional() protected injector: Injector) {}
 

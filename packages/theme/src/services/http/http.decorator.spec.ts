@@ -9,16 +9,16 @@ import {
   Body,
   DELETE,
   GET,
-  Headers,
   HEAD,
+  Headers,
   JSONP,
   OPTIONS,
-  Path,
   PATCH,
+  Path,
+  Payload,
   POST,
   PUT,
   Query,
-  Payload,
 } from './http.decorator';
 
 @BaseUrl('/user')

@@ -1,4 +1,4 @@
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
@@ -7,6 +7,7 @@ import { SFSchema } from './schema';
 
 declare var Ajv: NzSafeAny;
 
+@Injectable()
 export abstract class SchemaValidatorFactory {
   abstract createValidatorFn(
     schema: SFSchema,
@@ -14,6 +15,7 @@ export abstract class SchemaValidatorFactory {
   ): (value: SFSchema) => ErrorData[];
 }
 
+@Injectable()
 export class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
   protected ajv: NzSafeAny;
 

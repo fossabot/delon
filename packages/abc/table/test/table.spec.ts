@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Component, DebugElement, Type, ViewChild } from '@angular/core';
-import { discardPeriodicTasks, fakeAsync, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of, Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
-import { en_US, ALAIN_I18N_TOKEN, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, ModalHelper } from '@delon/theme';
+import { ALAIN_I18N_TOKEN, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, en_US, ModalHelper } from '@delon/theme';
 import { deepCopy, deepGet } from '@delon/util';
-import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
-import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzPaginationComponent } from 'ng-zorro-antd/pagination';
 
 import { configureTestSuite, dispatchDropDown } from '@delon/testing';
 import { AlainI18NService, AlainI18NServiceFake } from '../../../theme/src/services/i18n/i18n';
@@ -23,18 +23,18 @@ import { STComponent } from '../table.component';
 import { STConfig } from '../table.config';
 import {
   STChange,
+  STChangeType,
   STColumn,
   STColumnBadge,
   STColumnFilter,
   STColumnTag,
+  STColumnTitle,
   STMultiSort,
   STPage,
   STReq,
   STRes,
   STResReNameType,
   STWidthMode,
-  STColumnTitle,
-  STChangeType,
 } from '../table.interfaces';
 import { STModule } from '../table.module';
 
