@@ -1,6 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,14 +23,13 @@ class MockLocation {
 }
 
 describe('abc: global-footer', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<TestComponent>;
   let dl: DebugElement;
   let context: TestComponent;
   let page: PageObject;
 
   beforeEach(() => {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), GlobalFooterModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [TestComponent],

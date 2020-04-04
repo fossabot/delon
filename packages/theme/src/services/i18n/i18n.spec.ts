@@ -33,7 +33,7 @@ describe('theme: i18n', () => {
           html: '<i>asdf</i>',
         };
       }
-      fanyi(key: string, data?: {}, _isSafe?: boolean) {
+      fanyi(key: string, data?: { [key: string]: string }, _isSafe?: boolean) {
         let res = this.data[key] || '';
         if (data) {
           Object.keys(data).forEach(k => (res = res.replace(new RegExp(`{{${k}}}`, 'g'), data[k])));

@@ -1,14 +1,11 @@
+import { registerLocaleData } from '@angular/common';
+import localeZhHans from '@angular/common/locales/zh-Hans';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-
-import { registerLocaleData } from '@angular/common';
-import localeZhHans from '@angular/common/locales/zh-Hans';
 registerLocaleData(localeZhHans);
-
-import { distanceInWordsToNow } from 'date-fns';
-import * as zh_cn from 'date-fns/locale/zh_cn';
-
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import * as zh_cn from 'date-fns/locale/zh-CN';
 import { AlainThemeModule } from '../../theme.module';
 
 describe('Pipe: _date', () => {
@@ -33,14 +30,12 @@ describe('Pipe: _date', () => {
     { date: undefined, result: `` },
     { date, result: ``, format: 'fn' },
   ].forEach((item: any) => {
-    it(`${typeof item.date}:${'' + item.date} muse be ${item.result}${
-      item.format ? `(format: ${item.format})` : ''
-    }`, () => {
+    it(`${typeof item.date}:${'' + item.date} muse be ${item.result}${item.format ? `(format: ${item.format})` : ''}`, () => {
       fixture.componentInstance.value = item.date;
       if (item.format) {
         fixture.componentInstance.format = item.format;
         if (item.format === 'fn')
-          item.result = distanceInWordsToNow(item.date, {
+          item.result = formatDistanceToNow(item.date, {
             locale: (window as any).__locale__,
           });
       }
@@ -51,9 +46,7 @@ describe('Pipe: _date', () => {
 });
 
 @Component({
-  template: `
-    <p id="result">{{ value | _date: format }}</p>
-  `,
+  template: ` <p id="result">{{ value | _date: format }}</p> `,
 })
 class TestComponent {
   value: Date | string | number;

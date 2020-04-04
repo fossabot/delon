@@ -1,7 +1,7 @@
 // tslint:disable:no-string-literal
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Type } from '@angular/core';
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AlainThemeModule } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { Observable, of } from 'rxjs';
@@ -12,7 +12,6 @@ import { CacheService } from './cache.service';
 import { ICache } from './interface';
 
 describe('cache: service', () => {
-  let injector: TestBedStatic;
   let srv: CacheService;
   const KEY = 'a';
 
@@ -42,7 +41,7 @@ describe('cache: service', () => {
     if (defaultCog) {
       providers.push({ provide: DelonCacheConfig, useValue: defaultCog });
     }
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, AlainThemeModule.forRoot(), DelonCacheModule],
       providers,
     });

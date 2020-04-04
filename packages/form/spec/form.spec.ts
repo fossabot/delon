@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { configureTestSuite, createTestContext } from '@delon/testing';
@@ -14,7 +14,6 @@ import { WidgetRegistry } from '../src/widget.factory';
 import { SCHEMA, SFPage, TestFormComponent } from './base.spec';
 
 describe('form: component', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
@@ -30,7 +29,7 @@ describe('form: component', () => {
       if (options.acl) {
         imports.push(DelonACLModule.forRoot());
       }
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports,
         declarations: [TestFormComponent, TestModeComponent],
       });

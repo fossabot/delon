@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Component, DebugElement, Type, ViewChild } from '@angular/core';
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,7 +77,6 @@ class MockI18NServiceFake extends AlainI18NServiceFake {
 }
 
 describe('abc: table', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<TestComponent>;
   let context: TestComponent;
   let dl: DebugElement;
@@ -114,7 +113,7 @@ describe('abc: table', () => {
     if (other.providers!.length > 0) {
       providers.push(...other.providers!);
     }
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports,
       declarations: [TestComponent, TestExpandComponent],
       providers,

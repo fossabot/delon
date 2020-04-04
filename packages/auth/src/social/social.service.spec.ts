@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { discardPeriodicTasks, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DefaultUrlSerializer, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
@@ -45,11 +45,10 @@ const MockAuth0 = {
 };
 
 describe('auth: social.service', () => {
-  let injector: TestBedStatic;
   let srv: SocialService;
 
   function genModule(options: DelonAuthConfig, tokenData?: SimpleTokenModel) {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), DelonAuthModule],
       providers: [
         SocialService,

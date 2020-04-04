@@ -1,6 +1,6 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, inject, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,7 +19,6 @@ class MockI18NServiceFake extends AlainI18NServiceFake {
 }
 
 describe('abc: page-header', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<TestComponent>;
   let dl: DebugElement;
   let menuSrv: MenuService;
@@ -32,7 +31,7 @@ describe('abc: page-header', () => {
     if (other.providers && other.providers.length) {
       providers.push(...other.providers);
     }
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports,
       declarations: [TestComponent],
       providers,
@@ -63,7 +62,7 @@ describe('abc: page-header', () => {
 
   describe('', () => {
     configureTestSuite(() => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [RouterTestingModule.withRoutes([{ path: '1-1/:name', component: TestComponent }]), PageHeaderModule],
         providers: [{ provide: APP_BASE_HREF, useValue: '/' }, SettingsService],
         declarations: [TestComponent, TestAutoBreadcrumbComponent, TestI18nComponent],

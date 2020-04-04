@@ -1,4 +1,4 @@
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router, RouteReuseStrategy } from '@angular/router';
 import { MenuService } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
@@ -24,7 +24,6 @@ class MockRouter {
 }
 
 describe('abc: reuse-tab(service)', () => {
-  let injector: TestBedStatic;
   let srv: ReuseTabService;
   let menuSrv: MenuService;
   let router: MockRouter;
@@ -32,7 +31,7 @@ describe('abc: reuse-tab(service)', () => {
   afterEach(() => srv.ngOnDestroy());
 
   function genModule(providers: any[] = [{ provide: MenuService, useClass: MockMenuService }]) {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       providers: [
         ReuseTabService,
         {

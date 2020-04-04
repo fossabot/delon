@@ -1,4 +1,4 @@
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -8,13 +8,12 @@ import { ACLService } from './acl.service';
 import { ACLType } from './acl.type';
 
 describe('acl: guard', () => {
-  let injector: TestBedStatic;
   let srv: ACLGuard;
   let acl: ACLService;
   let routerSpy: jasmine.Spy;
 
   beforeEach(() => {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), DelonACLModule.forRoot()],
     });
     srv = TestBed.inject<ACLGuard>(ACLGuard);

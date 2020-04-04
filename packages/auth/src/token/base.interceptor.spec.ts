@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Type } from '@angular/core';
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, throwError } from 'rxjs';
@@ -54,7 +54,6 @@ class OtherInterceptor implements HttpInterceptor {
 }
 
 describe('auth: base.interceptor', () => {
-  let injector: TestBedStatic;
   let http: HttpClient;
   let httpBed: HttpTestingController;
   let router: Router;
@@ -65,7 +64,7 @@ describe('auth: base.interceptor', () => {
   };
 
   function genModule(options: DelonAuthConfig, tokenData?: ITokenModel, provider: any[] = []) {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([]), DelonAuthModule],
       providers: [
         { provide: DOCUMENT, useValue: MockDoc },

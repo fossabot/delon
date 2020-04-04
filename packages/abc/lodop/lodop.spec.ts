@@ -1,4 +1,4 @@
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { LazyService } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { concat } from 'rxjs';
@@ -28,14 +28,13 @@ class MockLazyService {
 }
 
 describe('abc: lodop', () => {
-  let injector: TestBedStatic;
   let srv: LodopService;
 
   function fnLodopConfig(): LodopConfig {
     return cog;
   }
   function genModule() {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [LodopModule],
       providers: [
         { provide: LazyService, useClass: MockLazyService },

@@ -1,10 +1,8 @@
-import { TestBed, TestBedStatic } from '@angular/core/testing';
-import { filter } from 'rxjs/operators';
-
+import { TestBed } from '@angular/core/testing';
 import { ACLService } from '@delon/acl';
 import { deepCopy } from '@delon/util';
+import { filter } from 'rxjs/operators';
 import { ALAIN_I18N_TOKEN, AlainI18NServiceFake } from '../i18n/i18n';
-
 import { Menu } from './interface';
 import { MenuService } from './menu.service';
 
@@ -15,7 +13,6 @@ class MockACLService {
 }
 
 describe('Service: Menu', () => {
-  let injector: TestBedStatic;
   let srv: MenuService;
   const DATA = [
     {
@@ -47,7 +44,7 @@ describe('Service: Menu', () => {
 
   describe('[default]', () => {
     beforeEach(() => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         providers: [
           MenuService,
           { provide: ALAIN_I18N_TOKEN, useClass: AlainI18NServiceFake },
@@ -345,7 +342,7 @@ describe('Service: Menu', () => {
 
   describe('[i18n changed]', () => {
     it('with ALAIN_I18N_TOKEN', () => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         providers: [
           MenuService,
           { provide: ALAIN_I18N_TOKEN, useClass: AlainI18NServiceFake },
@@ -360,7 +357,7 @@ describe('Service: Menu', () => {
     });
 
     it('without ALAIN_I18N_TOKEN', () => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         providers: [MenuService, { provide: ACLService, useClass: MockACLService }],
       });
       srv = TestBed.inject<MenuService>(MenuService);

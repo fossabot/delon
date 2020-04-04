@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
-import { ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import { AlainThemeModule } from '../../theme.module';
 import { ModalHelper } from './modal.helper';
 
 describe('theme: ModalHelper', () => {
-  let injector: TestBedStatic;
   let modal: ModalHelper;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -19,7 +18,7 @@ describe('theme: ModalHelper', () => {
     })
     class TestModule {}
 
-    injector = TestBed.configureTestingModule({ imports: [TestModule] });
+    TestBed.configureTestingModule({ imports: [TestModule] });
     fixture = TestBed.createComponent(TestComponent);
     modal = TestBed.inject<ModalHelper>(ModalHelper);
   });

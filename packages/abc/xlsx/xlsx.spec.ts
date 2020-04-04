@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { deepCopy, LazyService } from '@delon/util';
 import * as fs from 'file-saver';
@@ -49,10 +49,9 @@ class MockHttpClient {
 }
 
 describe('abc: xlsx', () => {
-  let injector: TestBedStatic;
   let srv: XlsxService;
   function genModule() {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [XlsxModule, HttpClientTestingModule],
       declarations: [TestComponent],
       providers: [

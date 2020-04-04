@@ -1,4 +1,4 @@
-import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { XlsxService } from '../../xlsx/xlsx.service';
 import { XlsxExportOptions } from '../../xlsx/xlsx.types';
 import { STExport } from '../table-export';
@@ -66,12 +66,11 @@ const data: any[] = [
 ];
 
 describe('abc: table: export', () => {
-  let injector: TestBedStatic;
   let srv: STExport;
 
   describe('[default]', () => {
     beforeEach(() => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         providers: [{ provide: XlsxService, useClass: MockXlsxService }, STExport],
       });
       srv = TestBed.inject<STExport>(STExport);

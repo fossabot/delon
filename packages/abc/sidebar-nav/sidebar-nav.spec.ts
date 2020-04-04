@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -83,7 +83,6 @@ class MockLocation {
 }
 
 describe('abc: sidebar-nav', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<TestComponent>;
   let dl: DebugElement;
   let context: TestComponent;
@@ -94,7 +93,7 @@ describe('abc: sidebar-nav', () => {
   let doc: Document;
 
   function createModule() {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([]), AlainThemeModule, HttpClientTestingModule, SidebarNavModule],
       declarations: [TestComponent],
       providers: [
@@ -461,7 +460,7 @@ describe('abc: sidebar-nav', () => {
 
   describe('should be recursive path', () => {
     configureTestSuite(() => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         imports: [
           RouterModule.forRoot([]),
           AlainThemeModule,

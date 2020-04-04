@@ -1,5 +1,5 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ExtraOptions, Router, ROUTER_CONFIGURATION, RouteReuseStrategy } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -22,7 +22,6 @@ class MockI18NServiceFake extends AlainI18NServiceFake {
 }
 
 describe('abc: reuse-tab', () => {
-  let injector: TestBedStatic;
   let fixture: ComponentFixture<AppComponent>;
   let dl: DebugElement;
   let layoutComp: LayoutComponent;
@@ -31,7 +30,7 @@ describe('abc: reuse-tab', () => {
   let page: PageObject;
 
   function genModule(needI18n = false) {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [AppComponent, LayoutComponent, AComponent, BComponent, CComponent, DComponent, EComponent],
       imports: [
         DelonLocaleModule,
@@ -629,7 +628,7 @@ describe('abc: reuse-tab', () => {
 
   describe('#issues', () => {
     it('#361', fakeAsync(() => {
-      injector = TestBed.configureTestingModule({
+      TestBed.configureTestingModule({
         declarations: [AppComponent, LayoutComponent, CComponent, DComponent],
         imports: [
           DelonLocaleModule,

@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { LoadingModule } from './loading.module';
 import { LoadingService } from './loading.service';
 
 describe('abc: loading', () => {
-  let injector: TestBedStatic;
   let srv: LoadingService;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [LoadingModule],
       declarations: [TestComponent],
     });

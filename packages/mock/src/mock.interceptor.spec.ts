@@ -10,7 +10,7 @@ import {
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Component, NgModule, NgModuleFactoryLoader, Type } from '@angular/core';
-import { fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import * as Mock from 'mockjs';
@@ -49,13 +49,12 @@ class OtherInterceptor implements HttpInterceptor {
 }
 
 describe('mock: interceptor', () => {
-  let injector: TestBedStatic;
   let http: HttpClient;
   let httpMock: HttpTestingController;
 
   function genModule(options: DelonMockConfig, imports: any[] = [], spyConsole = true, providers?: any[]) {
     options = Object.assign(new DelonMockConfig(), options);
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [RootComponent],
       imports: [
         HttpClientTestingModule,
