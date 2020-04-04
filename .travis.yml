@@ -4,12 +4,14 @@ language: node_js
 
 addons:
   chrome: stable
+  yarn: stable
 
 git:
   depth: 1
 
 cache:
   npm: true
+  yarn: true
   directories:
     - ./node_modules/
 
