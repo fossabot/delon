@@ -27,7 +27,7 @@ declare var Slider: any;
  ` + code;
       g2Libs = [
         `'https://unpkg.com/@antv/g2@${pkg.dependencies['@antv/g2'].substr(1)}/dist/g2.min.js'`,
-        `'https://unpkg.com/@antv/data-set@${pkg.dependencies['@antv/data-set'].substr(1)}/dist/data-set.min.js'`,
+        `'https://unpkg.com/@antv/data-set@${pkg.dependencies['@antv/data-set'].substr(1)}/dist/data-set.js'`,
         `'https://unpkg.com/@antv/g2-plugin-slider@${pkg.dependencies['@antv/g2-plugin-slider'].substr(1)}/dist/g2-plugin-slider.min.js'`,
       ];
     }
