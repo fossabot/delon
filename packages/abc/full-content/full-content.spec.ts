@@ -1,11 +1,10 @@
 import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, DebugElement, ViewChild } from '@angular/core';
-import { fakeAsync, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivationEnd, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BehaviorSubject } from 'rxjs';
-
 import { FullContentComponent } from './full-content.component';
 import { FullContentModule } from './full-content.module';
 import { FullContentService } from './full-content.service';
@@ -117,9 +116,7 @@ describe('abc: full-content', () => {
       fixture.detectChanges();
       tick(210);
       expect(bodyEl.getBoundingClientRect).toHaveBeenCalled();
-      expect(context.comp._height).toBe(
-        bodyHeight - el.getBoundingClientRect().top - context.padding,
-      );
+      expect(context.comp._height).toBe(bodyHeight - el.getBoundingClientRect().top - context.padding);
     }));
     it('should be clear class when go to other route', () => {
       const eventsSub = new BehaviorSubject<any>(null);
@@ -165,13 +162,7 @@ describe('abc: full-content', () => {
 
 @Component({
   template: `
-    <full-content
-      #comp
-      [(fullscreen)]="fullscreen"
-      [hideTitle]="hideTitle"
-      [padding]="padding"
-      (fullscreenChange)="change()"
-    >
+    <full-content #comp [(fullscreen)]="fullscreen" [hideTitle]="hideTitle" [padding]="padding" (fullscreenChange)="change()">
       <button full-toggle>Full</button>
     </full-content>
   `,

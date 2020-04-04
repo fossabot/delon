@@ -1,10 +1,9 @@
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Type } from '@angular/core';
 import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { DefaultUrlSerializer, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Type } from '@angular/core';
-
 import { DelonAuthConfig } from '../../auth.config';
 import { DelonAuthModule } from '../../auth.module';
 import { DA_SERVICE_TOKEN, ITokenModel, ITokenService } from '../interface';

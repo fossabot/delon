@@ -1,9 +1,7 @@
 import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { ActivatedRoute, Router, RouteReuseStrategy } from '@angular/router';
-import { filter } from 'rxjs/operators';
-
 import { MenuService } from '@delon/theme';
-
+import { filter } from 'rxjs/operators';
 import { ReuseTabMatchMode, ReuseTitle } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
 import { ReuseTabStrategy } from './reuse-tab.strategy';

@@ -1,9 +1,8 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite, createTestContext } from '@delon/testing';
 import { REP_MAX } from '@delon/theme';
-
 import { SVContainerComponent } from './view-container.component';
 import { SVComponent } from './view.component';
 import { SVConfig } from './view.config';

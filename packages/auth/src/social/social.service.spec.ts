@@ -1,15 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  discardPeriodicTasks,
-  fakeAsync,
-  tick,
-  TestBed,
-  TestBedStatic,
-} from '@angular/core/testing';
+import { discardPeriodicTasks, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { DefaultUrlSerializer, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
-import { DOCUMENT } from '@angular/common';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { DelonAuthConfig } from '../auth.config';
 import { DelonAuthModule } from '../auth.module';
 import { DA_SERVICE_TOKEN, ITokenModel } from '../token/interface';
@@ -91,8 +85,7 @@ describe('auth: social.service', () => {
           injector.get(DA_SERVICE_TOKEN).set(item.model);
           return { closed: true };
         };
-        // tslint:disable-next-line: unnecessary-bind
-        spyOn(window, 'open').and.callFake(mockWindowOpen.bind(this));
+        spyOn(window, 'open').and.callFake(mockWindowOpen as NzSafeAny);
         srv.login(item.url).subscribe(() => {});
         tick(130);
         expect(window.open).toHaveBeenCalled();
@@ -109,8 +102,7 @@ describe('auth: social.service', () => {
         injector.get(DA_SERVICE_TOKEN).set(null);
         return { closed: true };
       };
-      // tslint:disable-next-line: unnecessary-bind
-      spyOn(window, 'open').and.callFake(mockWindowOpen.bind(this));
+      spyOn(window, 'open').and.callFake(mockWindowOpen as NzSafeAny);
       srv.login(MockAuth0.url).subscribe(() => {});
       tick(130);
       expect(window.open).toHaveBeenCalled();
@@ -123,8 +115,7 @@ describe('auth: social.service', () => {
         injector.get(DA_SERVICE_TOKEN).set(null);
         return { closed: false };
       };
-      // tslint:disable-next-line: unnecessary-bind
-      spyOn(window, 'open').and.callFake(mockWindowOpen.bind(this));
+      spyOn(window, 'open').and.callFake(mockWindowOpen as NzSafeAny);
       srv.login(MockAuth0.url).subscribe(() => {});
       tick(130);
       expect(window.open).toHaveBeenCalled();

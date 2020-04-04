@@ -17,11 +17,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControlName, NgModel } from '@angular/forms';
-import { Subscription } from 'rxjs';
-
 import { ResponsiveService } from '@delon/theme';
-import { deepGet, isEmpty, InputBoolean, InputNumber } from '@delon/util';
-
+import { deepGet, InputBoolean, InputNumber, isEmpty } from '@delon/util';
+import { Subscription } from 'rxjs';
 import { SEContainerComponent } from './edit-container.component';
 
 const prefixCls = `se`;

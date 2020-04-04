@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { DelonUtilModule } from '../util.module';
 import { LazyService } from './lazy.service';
 
@@ -9,7 +10,7 @@ class MockDocument {
   getElementsByTagName = () => {
     return [
       {
-        appendChild: node => {
+        appendChild: (node: NzSafeAny) => {
           if (node.testStatus === 'ok') {
             if (node.readyState) {
               node.readyState = 'complete';
@@ -69,8 +70,7 @@ describe('utils: lazy', () => {
         };
         return mockObj;
       };
-      // tslint:disable-next-line: unnecessary-bind
-      spyOn(doc, 'getElementsByTagName').and.callFake(mockGetElementsByTagName.bind(this));
+      spyOn(doc, 'getElementsByTagName').and.callFake(mockGetElementsByTagName as NzSafeAny);
       srv.change.subscribe(res => {
         expect(res[0].status).toBe('ok');
         done();

@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Directive, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { saveAs } from 'file-saver';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 
 @Directive({
   selector: '[down-file]',
@@ -27,7 +28,7 @@ export class DownFileDirective {
   /** 错误回调 */
   @Output() readonly error = new EventEmitter<any>();
 
-  private getDisposition(data: string | null) {
+  private getDisposition(data: string | null): NzSafeAny {
     const arr: Array<{}> = (data || '')
       .split(';')
       .filter(i => i.includes('='))
@@ -81,7 +82,7 @@ export class DownFileDirective {
           if (typeof fileName === 'function') fileName = fileName(res);
           fileName =
             fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
-          saveAs(res.body, decodeURI(fileName as string));
+          saveAs(res.body!, decodeURI(fileName as string));
           this.success.emit(res);
         },
         err => this.error.emit(err),

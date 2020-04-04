@@ -1,18 +1,17 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Type } from '@angular/core';
 import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { throwError, Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
 import { DelonAuthConfig } from '../auth.config';
 import { DelonAuthModule } from '../auth.module';
 import { AuthReferrer, DA_SERVICE_TOKEN, ITokenModel, ITokenService } from './interface';
 import { SimpleInterceptor } from './simple/simple.interceptor';
 import { SimpleTokenModel } from './simple/simple.model';
-import { Type } from '@angular/core';
 
 function genModel<T extends ITokenModel>(modelType: new () => T, token: string | null = `123`) {
   const model: any = new modelType();

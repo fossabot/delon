@@ -1,6 +1,6 @@
 import { TestBed, TestBedStatic } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { ACLGuard } from './acl-guard';
 import { DelonACLModule } from './acl.module';

@@ -1,16 +1,17 @@
 import { Component, DebugElement } from '@angular/core';
-import { fakeAsync, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-import { en_US, AlainThemeModule, DelonLocaleService, ALAIN_I18N_TOKEN, AlainI18NService } from '@delon/theme';
+import { ALAIN_I18N_TOKEN, AlainI18NService, AlainThemeModule, DelonLocaleService, en_US } from '@delon/theme';
 import { deepCopy } from '@delon/util';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { of } from 'rxjs';
 import { FormPropertyFactory } from '../src/model/form.property.factory';
 import { DelonFormModule } from '../src/module';
 import { SFSchema } from '../src/schema/index';
-import { SCHEMA, SFPage, TestFormComponent } from './base.spec';
 import { WidgetRegistry } from '../src/widget.factory';
+import { SCHEMA, SFPage, TestFormComponent } from './base.spec';
 
 describe('form: component', () => {
   let injector: TestBedStatic;
@@ -264,20 +265,13 @@ describe('form: component', () => {
           expect((page.getEl('.ant-btn-primary') as HTMLButtonElement).disabled).toBe(true);
           context.liveValidate = false;
           fixture.detectChanges();
-          page
-            .submit(false)
-            .setValue('/name', 'cipchk')
-            .setValue('/pwd', '1111')
-            .submit(true);
+          page.submit(false).setValue('/name', 'cipchk').setValue('/pwd', '1111').submit(true);
         });
       });
 
       describe('#submit', () => {
         it('should be submit when is valid', () => {
-          page
-            .setValue('/name', 'cipchk')
-            .setValue('/pwd', '1111')
-            .isValid();
+          page.setValue('/name', 'cipchk').setValue('/pwd', '1111').isValid();
         });
         it('should not be submit when is invalid', () => {
           page.setValue('/name', 'cipchk').isValid(false);
@@ -288,10 +282,7 @@ describe('form: component', () => {
         it('should be set default value', () => {
           const schema = deepCopy(SCHEMA.user) as SFSchema;
           schema.properties!.name.default = 'cipchk';
-          page
-            .newSchema(schema)
-            .reset()
-            .checkValue('/name', 'cipchk');
+          page.newSchema(schema).reset().checkValue('/name', 'cipchk');
         });
       });
 
@@ -375,11 +366,14 @@ describe('form: component', () => {
       });
 
       it('#disabled', () => {
-        const CLS = {
+        const CLS: { [key: string]: string | Array<NzSafeAny> } = {
           input: '.ant-input[disabled]',
           number: '.ant-input-number-disabled',
           switch: '.ant-switch-disabled',
-          select: [['.ant-select-enabled', 1], ['.ant-select-disabled', 1]],
+          select: [
+            ['.ant-select-enabled', 1],
+            ['.ant-select-disabled', 1],
+          ],
         };
         page.newSchema({
           properties: {
@@ -395,7 +389,7 @@ describe('form: component', () => {
           if (Array.isArray(CLS[key])) {
             page.checkCount(CLS[key][0][0], CLS[key][0][1]);
           } else {
-            page.checkCount(CLS[key], 0);
+            page.checkCount(CLS[key] as string, 0);
           }
         });
         context.disabled = true;
@@ -404,7 +398,7 @@ describe('form: component', () => {
           if (Array.isArray(CLS[key])) {
             page.checkCount(CLS[key][1][0], CLS[key][1][1]);
           } else {
-            page.checkCount(CLS[key], 1);
+            page.checkCount(CLS[key] as string, 1);
           }
         });
       });
@@ -467,18 +461,12 @@ describe('form: component', () => {
       });
 
       it('#formSubmit', () => {
-        page
-          .setValue('/name', 'cipchk')
-          .setValue('/pwd', 'asdf')
-          .submit();
+        page.setValue('/name', 'cipchk').setValue('/pwd', 'asdf').submit();
         expect(context.formSubmit).toHaveBeenCalled();
       });
 
       it('#formReset', () => {
-        page
-          .setValue('/name', 'cipchk')
-          .setValue('/pwd', 'asdf')
-          .reset();
+        page.setValue('/name', 'cipchk').setValue('/pwd', 'asdf').reset();
         expect(context.formReset).toHaveBeenCalled();
       });
 
@@ -801,8 +789,6 @@ describe('form: component', () => {
 });
 
 @Component({
-  template: `
-    <sf [layout]="layout" #comp [schema]="schema" [ui]="ui" [button]="button" [mode]="mode" [loading]="loading"></sf>
-  `,
+  template: ` <sf [layout]="layout" #comp [schema]="schema" [ui]="ui" [button]="button" [mode]="mode" [loading]="loading"></sf> `,
 })
 class TestModeComponent extends TestFormComponent {}

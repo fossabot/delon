@@ -1,4 +1,5 @@
 import { TestBed, TestBedStatic } from '@angular/core/testing';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { DelonAuthConfig } from '../auth.config';
 import { DA_SERVICE_TOKEN, ITokenModel, ITokenService } from './interface';
 import { JWTTokenModel } from './jwt/jwt.model';
@@ -14,7 +15,7 @@ describe('auth: token.service', () => {
   } as ITokenModel;
 
   beforeEach(() => {
-    let data = {};
+    let data: { [key: string]: NzSafeAny } = {};
 
     spyOn(localStorage, 'getItem').and.callFake((key: string): string => {
       return data[key] || null;

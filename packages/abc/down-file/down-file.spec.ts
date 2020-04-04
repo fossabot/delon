@@ -1,12 +1,12 @@
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite } from '@delon/testing';
 import { _HttpClient } from '@delon/theme';
 import * as fs from 'file-saver';
-
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { DownFileDirective } from './down-file.directive';
 import { DownFileModule } from './down-file.module';
 
@@ -21,11 +21,10 @@ describe('abc: down-file', () => {
   let fixture: ComponentFixture<TestComponent>;
   let dl: DebugElement;
   let context: TestComponent;
-  let injector: TestBedStatic;
   let httpBed: HttpTestingController;
 
   configureTestSuite(() => {
-    injector = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, DownFileModule],
       declarations: [TestComponent],
     });
@@ -59,7 +58,7 @@ describe('abc: down-file', () => {
     it('should be used custom filename', () => {
       let fn: string;
       const filename = 'newfile.docx';
-      spyOn(fs, 'saveAs').and.callFake((_body: {}, fileName: string) => (fn = fileName));
+      spyOn(fs, 'saveAs').and.callFake(((_body: {}, fileName: string) => (fn = fileName)) as NzSafeAny);
       context.fileName = rep => rep.headers.get('a')!;
       fixture.detectChanges();
       (dl.query(By.css('#down-docx')).nativeElement as HTMLButtonElement).click();
@@ -73,7 +72,7 @@ describe('abc: down-file', () => {
     it('should be using header filename when repseon has [filename]', () => {
       let fn: string;
       const filename = 'newfile.docx';
-      spyOn(fs, 'saveAs').and.callFake((_body: {}, fileName: string) => (fn = fileName));
+      spyOn(fs, 'saveAs').and.callFake(((_body: {}, fileName: string) => (fn = fileName)) as NzSafeAny);
       context.fileName = null;
       fixture.detectChanges();
       (dl.query(By.css('#down-docx')).nativeElement as HTMLButtonElement).click();
@@ -87,7 +86,7 @@ describe('abc: down-file', () => {
     it('should be using header filename when repseon has [x-filename]', () => {
       let fn: string;
       const filename = 'x-newfile.docx';
-      spyOn(fs, 'saveAs').and.callFake((_body: {}, fileName: string) => (fn = fileName));
+      spyOn(fs, 'saveAs').and.callFake(((_body: {}, fileName: string) => (fn = fileName)) as NzSafeAny);
       context.fileName = null;
       fixture.detectChanges();
       (dl.query(By.css('#down-docx')).nativeElement as HTMLButtonElement).click();
@@ -141,7 +140,7 @@ describe('abc: down-file', () => {
     fixture.detectChanges();
     let fn: string;
     const filename = 'newfile.docx';
-    spyOn(fs, 'saveAs').and.callFake((_body: {}, fileName: string) => (fn = fileName));
+    spyOn(fs, 'saveAs').and.callFake(((_body: {}, fileName: string) => (fn = fileName)) as NzSafeAny);
     context.fileName = null;
     fixture.detectChanges();
     (dl.query(By.css('#down-docx')).nativeElement as HTMLButtonElement).click();

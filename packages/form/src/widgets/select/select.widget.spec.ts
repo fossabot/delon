@@ -1,7 +1,6 @@
 import { DebugElement } from '@angular/core';
-import { fakeAsync, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync } from '@angular/core/testing';
 import { createTestContext } from '@delon/testing';
-
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 import { SFSchema } from '../../../src/schema/index';
 import { SelectWidget } from './select.widget';
@@ -56,11 +55,7 @@ describe('form: widget: select', () => {
         },
       },
     };
-    page
-      .newSchema(s)
-      .typeEvent('click', 'nz-select')
-      .checkCount('.ant-select-disabled', 1)
-      .asyncEnd();
+    page.newSchema(s).typeEvent('click', 'nz-select').checkCount('.ant-select-disabled', 1).asyncEnd();
   }));
 
   it('#events', fakeAsync(() => {
@@ -88,10 +83,7 @@ describe('form: widget: select', () => {
     page.newSchema(s).typeEvent('click', 'nz-select');
     const el = document.querySelector('.ant-select-dropdown-menu-item:not(.ant-select-dropdown-menu-item-selected)') as HTMLElement;
     el.click();
-    page
-      .dc()
-      .checkValue('/a', 'TRADE_SUCCESS')
-      .asyncEnd();
+    page.dc().checkValue('/a', 'TRADE_SUCCESS').asyncEnd();
     const item = s.properties!.a.ui as any;
     expect(item.change).toHaveBeenCalled();
     expect(item.openChange).toHaveBeenCalled();
@@ -116,13 +108,6 @@ describe('form: widget: select', () => {
         },
       },
     };
-    page
-      .newSchema(s)
-      .checkValue('/a', 1)
-      .time()
-      .typeEvent('click', '.ant-select-close-icon')
-      .time()
-      .checkValue('/a', undefined)
-      .asyncEnd();
+    page.newSchema(s).checkValue('/a', 1).time().typeEvent('click', '.ant-select-close-icon').time().checkValue('/a', undefined).asyncEnd();
   }));
 });

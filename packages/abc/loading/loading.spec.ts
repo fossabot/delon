@@ -1,7 +1,7 @@
-import { TestBed, TestBedStatic, fakeAsync, tick, ComponentFixture } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { LoadingModule } from './loading.module';
 import { LoadingService } from './loading.service';
-import { Component } from '@angular/core';
 
 describe('abc: loading', () => {
   let injector: TestBedStatic;

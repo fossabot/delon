@@ -13,7 +13,6 @@ import {
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { InputBoolean, InputNumber } from '@delon/util';
 import { Subscription } from 'rxjs';
-
 import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
 
 @Component({

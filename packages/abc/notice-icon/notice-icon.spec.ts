@@ -1,11 +1,10 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed, TestBedStatic, tick, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-import { en_US, zh_CN, DelonLocaleModule, DelonLocaleService } from '@delon/theme';
-
+import { DelonLocaleModule, DelonLocaleService, en_US, zh_CN } from '@delon/theme';
 import { NoticeIconComponent } from './notice-icon.component';
 import { NoticeIconModule } from './notice-icon.module';
 import { NoticeItem } from './notice-icon.types';

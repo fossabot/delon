@@ -1,15 +1,15 @@
-// tslint:disable: no-string-literal
+// tslint:disable:no-string-literal
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed, TestBedStatic } from '@angular/core/testing';
-import { of, Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { Type } from '@angular/core';
+import { TestBed, TestBedStatic } from '@angular/core/testing';
 import { AlainThemeModule } from '@delon/theme';
-
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { Observable, of } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { DelonCacheConfig } from './cache.config';
 import { DelonCacheModule } from './cache.module';
 import { CacheService } from './cache.service';
 import { ICache } from './interface';
-import { DelonCacheConfig } from './cache.config';
 
 describe('cache: service', () => {
   let injector: TestBedStatic;
@@ -144,9 +144,7 @@ describe('cache: service', () => {
           expect(srv.getNone(k)).toBe('ok!');
           done();
         });
-        getHTC()
-          .expectOne(k)
-          .flush('ok!');
+        getHTC().expectOne(k).flush('ok!');
       });
       it('should be specify sotre type via promise mode', (done: () => void) => {
         const k = '/data/1';
@@ -156,18 +154,14 @@ describe('cache: service', () => {
           expect(data.type).toBe('m');
           done();
         });
-        getHTC()
-          .expectOne(k)
-          .flush('ok!');
+        getHTC().expectOne(k).flush('ok!');
       });
       it('reproduce-issues-40', () => {
         const url = `/test`;
         const firstGet = srv.get(url);
         expect(firstGet instanceof Observable).toBe(true);
         firstGet.subscribe();
-        getHTC()
-          .expectOne(url)
-          .flush('ok!');
+        getHTC().expectOne(url).flush('ok!');
         const secondGet = srv.get(url);
         expect(secondGet instanceof Observable).toBe(true);
       });
@@ -192,7 +186,7 @@ describe('cache: service', () => {
         });
       });
       it('should be return value via memory', (done: () => void) => {
-        srv.tryGet(KEY, of(10), { type: 'm' }).subscribe(ret => {
+        srv.tryGet(KEY, of(10), { type: 'm' }).subscribe((ret: NzSafeAny) => {
           expect(ret).toBe(10);
           done();
         });

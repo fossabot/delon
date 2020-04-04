@@ -1,4 +1,4 @@
-import addDays from 'date-fns/add_days';
+import addDays from 'date-fns/addDays';
 import format from 'date-fns/format';
 import { getTimeDistance } from './time';
 

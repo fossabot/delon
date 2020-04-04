@@ -1,8 +1,7 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { inject, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed, TestBedStatic } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-
 import { QRComponent } from './qr.component';
 import { QRConfig } from './qr.config';
 import { QRModule } from './qr.module';

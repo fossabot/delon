@@ -1,10 +1,8 @@
 import { Component, DebugElement, OnInit, ViewChild } from '@angular/core';
-import { inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
 import { NzFormModule } from 'ng-zorro-antd/form';
-
 import { ErrorCollectComponent } from './error-collect.component';
 import { ErrorCollectConfig } from './error-collect.config';
 import { ErrorCollectModule } from './error-collect.module';

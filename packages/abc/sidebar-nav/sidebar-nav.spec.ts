@@ -1,16 +1,14 @@
 import { DOCUMENT } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { fakeAsync, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { ACLService } from '@delon/acl';
 import { configureTestSuite } from '@delon/testing';
 import { AlainThemeModule, MenuIcon, MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { deepCopy } from '@delon/util';
-
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SidebarNavComponent } from './sidebar-nav.component';
 import { SidebarNavModule } from './sidebar-nav.module';
 import { Nav } from './sidebar-nav.types';
@@ -99,7 +97,10 @@ describe('abc: sidebar-nav', () => {
     injector = TestBed.configureTestingModule({
       imports: [RouterModule.forRoot([]), AlainThemeModule, HttpClientTestingModule, SidebarNavModule],
       declarations: [TestComponent],
-      providers: [{ provide: ACLService, useClass: MockACLService }, { provide: WINDOW, useFactory: () => new MockWindow() }],
+      providers: [
+        { provide: ACLService, useClass: MockACLService },
+        { provide: WINDOW, useFactory: () => new MockWindow() },
+      ],
     });
   }
 
@@ -365,7 +366,10 @@ describe('abc: sidebar-nav', () => {
       const newMenus = [
         {
           text: '',
-          children: [{ text: 'new menu', acl: 'admin' }, { text: 'new menu', acl: 'user' }],
+          children: [
+            { text: 'new menu', acl: 'admin' },
+            { text: 'new menu', acl: 'user' },
+          ],
         },
       ];
       beforeEach(() => createComp());
@@ -482,7 +486,10 @@ describe('abc: sidebar-nav', () => {
         {
           text: '主导航',
           group: true,
-          children: [{ text: 'user1', link: '/user' }, { text: 'user2', link: '/user' }],
+          children: [
+            { text: 'user1', link: '/user' },
+            { text: 'user2', link: '/user' },
+          ],
         },
       ]);
     }));

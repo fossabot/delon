@@ -1,7 +1,9 @@
-import { DomSanitizer } from '@angular/platform-browser';
-import { forwardRef, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
+import { FunctionProp } from 'ng-zorro-antd/core/types';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
 import { DatePickerConfig, DateRangePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 
@@ -60,7 +62,7 @@ export class RangePickerComponent implements ControlValueAccessor {
   @Input() nzDateRender: any;
   @Input() nzFormat: any;
   @Input() nzDisabledTime: any;
-  @Input() nzRenderExtraFooter: any;
+  @Input() nzRenderExtraFooter: FunctionProp<TemplateRef<void> | string>;
   @Input() nzShowTime: any;
   @Input() @InputBoolean() nzShowToday: boolean = true;
   @Input() nzMode: any;
@@ -114,7 +116,8 @@ export class RangePickerComponent implements ControlValueAccessor {
     this.value = item.fn(this.value as any);
     this.valueChange(this.value as [Date, Date]);
     if (this._shortcut.closed) {
-      this.comp.closeOverlay();
+      // tslint:disable-next-line:no-string-literal
+      (this.comp.datePicker as NzSafeAny)['picker'].hideOverlay();
     }
   }
 }

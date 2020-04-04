@@ -55,7 +55,10 @@ describe('abc: xlsx', () => {
     injector = TestBed.configureTestingModule({
       imports: [XlsxModule, HttpClientTestingModule],
       declarations: [TestComponent],
-      providers: [{ provide: HttpClient, useClass: MockHttpClient }, { provide: LazyService, useClass: MockLazyService }],
+      providers: [
+        { provide: HttpClient, useClass: MockHttpClient },
+        { provide: LazyService, useClass: MockLazyService },
+      ],
     });
     srv = injector.get<XlsxService>(XlsxService);
   }
@@ -126,7 +129,7 @@ describe('abc: xlsx', () => {
 
   describe('[#export]', () => {
     beforeEach(() => {
-      spyOn(fs.default, 'saveAs');
+      spyOn(fs, 'saveAs');
       genModule();
     });
     it('should be export xlsx via array', (done: () => void) => {
@@ -135,7 +138,7 @@ describe('abc: xlsx', () => {
           sheets: [{ data: null, name: 'asdf.xlsx' }, { data: null }],
         } as XlsxExportOptions)
         .then(() => {
-          expect(fs.default.saveAs).toHaveBeenCalled();
+          expect(fs.saveAs).toHaveBeenCalled();
           done();
         });
     });
@@ -147,7 +150,7 @@ describe('abc: xlsx', () => {
           },
         } as XlsxExportOptions)
         .then(() => {
-          expect(fs.default.saveAs).toHaveBeenCalled();
+          expect(fs.saveAs).toHaveBeenCalled();
           done();
         });
     });
@@ -188,9 +191,7 @@ describe('abc: xlsx', () => {
 });
 
 @Component({
-  template: `
-    <button [xlsx]="data"></button>
-  `,
+  template: ` <button [xlsx]="data"></button> `,
 })
 class TestComponent {
   data: any = {};

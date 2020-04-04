@@ -1,12 +1,11 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { fakeAsync, inject, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, inject, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-import { AlainI18NService, AlainI18NServiceFake, ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
-
+import { ALAIN_I18N_TOKEN, AlainI18NService, AlainI18NServiceFake, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { NzAffixComponent } from 'ng-zorro-antd/affix';
 import { ReuseTabService } from '../reuse-tab/reuse-tab.service';
 import { PageHeaderComponent } from './page-header.component';
@@ -146,7 +145,10 @@ describe('abc: page-header', () => {
               {
                 text: '1-1',
                 link: '/1-1',
-                children: [{ text: '1-1-1', link: '/1-1/1-1-1' }, { text: '1-1-2', link: '/1-1/1-1-2' }],
+                children: [
+                  { text: '1-1-1', link: '/1-1/1-1-1' },
+                  { text: '1-1-2', link: '/1-1/1-1-2' },
+                ],
               },
             ],
           },
@@ -177,7 +179,10 @@ describe('abc: page-header', () => {
               {
                 text: '1-1',
                 link: '/1-1',
-                children: [{ text: '1-1-1', link: '/1-1/1-1-1' }, { text: '1-1-2', link: '/1-1/1-1-2' }],
+                children: [
+                  { text: '1-1-1', link: '/1-1/1-1-1' },
+                  { text: '1-1-2', link: '/1-1/1-1-2' },
+                ],
               },
             ],
           },
@@ -244,7 +249,10 @@ describe('abc: page-header', () => {
               {
                 text: '1-1',
                 link: '/1-1',
-                children: [{ text: '1-1-1', link: '/1-1/1-1-1' }, { text: '1-1-2', link: '/1-1/1-1-2' }],
+                children: [
+                  { text: '1-1-1', link: '/1-1/1-1-1' },
+                  { text: '1-1-2', link: '/1-1/1-1-2' },
+                ],
               },
             ],
           },
@@ -275,7 +283,10 @@ describe('abc: page-header', () => {
               {
                 text: '1-1',
                 link: '/1-1',
-                children: [{ text: '1-1-1', link: '/1-1/1-1-1' }, { text: '1-1-2', link: '/1-1/1-1-2' }],
+                children: [
+                  { text: '1-1-1', link: '/1-1/1-1-1' },
+                  { text: '1-1-2', link: '/1-1/1-1-2' },
+                ],
               },
             ],
           },
@@ -308,7 +319,10 @@ describe('abc: page-header', () => {
       genModule({ created: false });
       context.title = null;
       context.autoTitle = true;
-      menuSrv.add([{ text: '1', link: '/1-1/p1' }, { text: '2', link: '/1-1/p2' }]);
+      menuSrv.add([
+        { text: '1', link: '/1-1/p1' },
+        { text: '2', link: '/1-1/p2' },
+      ]);
       const urlSpy = spyOnProperty(router, 'url');
       urlSpy.and.returnValue('/1-1/p1');
       tick();
@@ -439,9 +453,7 @@ class TestBaseComponent {
 class TestComponent extends TestBaseComponent {}
 
 @Component({
-  template: `
-    <page-header #comp [title]="title" [home]="home" [homeI18n]="homeI18n" [autoBreadcrumb]="autoBreadcrumb"></page-header>
-  `,
+  template: ` <page-header #comp [title]="title" [home]="home" [homeI18n]="homeI18n" [autoBreadcrumb]="autoBreadcrumb"></page-header> `,
 })
 class TestAutoBreadcrumbComponent extends TestBaseComponent {}
 

@@ -34,9 +34,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
       ]),
     ]),
   ],
-  template: `
-    <div [@errorAnt]><ng-content></ng-content></div>
-  `,
+  template: ` <div [@errorAnt]><ng-content></ng-content></div> `,
   host: {
     '[class.ant-form-explain]': 'true',
   },

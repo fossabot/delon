@@ -1,4 +1,3 @@
-import { DomSanitizer } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,12 +13,12 @@ import {
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { Menu, MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { InputBoolean } from '@delon/util';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
 import { Nav } from './sidebar-nav.types';
 
 const SHOWCLS = 'sidebar-nav__floating-show';

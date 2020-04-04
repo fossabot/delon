@@ -38,6 +38,9 @@ export class TagWidget extends ControlUIWidget<SFTagWidgetSchema> {
   }
 
   private updateValue() {
-    this.formProperty.setValue(this.data.filter(w => w.checked).map(i => i.value), false);
+    this.formProperty.setValue(
+      this.data.filter(w => w.checked).map(i => i.value),
+      false,
+    );
   }
 }

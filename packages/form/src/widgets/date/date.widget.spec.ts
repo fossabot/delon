@@ -1,17 +1,18 @@
 // tslint:disable: no-string-literal
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync } from '@angular/core/testing';
-import format from 'date-fns/format';
-import { deepCopy } from '@delon/util';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync } from '@angular/core/testing';
+import { deepCopy } from '@delon/util';
+import format from 'date-fns/format';
+import formatISO from 'date-fns/formatISO';
 registerLocaleData(zh);
 
 import { createTestContext } from '@delon/testing';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 import { SFSchema } from '../../../src/schema/index';
-import { DateWidget } from './date.widget';
 import * as utils from '../../utils';
+import { DateWidget } from './date.widget';
 import { SFDateWidgetSchema } from './schema';
 
 describe('form: widget: date', () => {
@@ -52,27 +53,23 @@ describe('form: widget: date', () => {
         };
         page.newSchema(s);
         const comp = getComp();
-        expect(format(comp.value)).toBe(format(time));
+        expect(formatISO(comp.value)).toBe(formatISO(time));
       });
       it('with number type but is string value', () => {
-        const time = (+new Date()).toString();
+        const time = +new Date();
         const s: SFSchema = {
           properties: { a: { type: 'string', ui: { widget }, default: time } },
         };
         page.newSchema(s);
         const comp = getComp();
-        expect(format(comp.value)).toBe(format(time));
+        expect(formatISO(comp.value)).toBe(formatISO(time));
       });
     });
     it('should be set value', fakeAsync(() => {
       const s: SFSchema = {
         properties: { a: { type: 'string', format: 'date-time', ui: { widget } } },
       };
-      page
-        .newSchema(s)
-        .checkValue('a', null)
-        .setValue('a', new Date(2019, 0, 1))
-        .dc(1);
+      page.newSchema(s).checkValue('a', null).setValue('a', new Date(2019, 0, 1)).dc(1);
       expect(page.getValue('a') instanceof Date).toBe(true);
       const ipt = page.getEl('.ant-calendar-picker-input') as HTMLInputElement;
       expect(ipt.value).toContain(`2019-01-01`);
@@ -182,7 +179,7 @@ describe('form: widget: date', () => {
       copyS.properties!.start.default = time;
       copyS.properties!.end.default = time;
       page.newSchema(copyS);
-      const res = getComp().displayValue;
+      const res = getComp().displayValue as Date[];
       expect(Array.isArray(res)).toBe(true);
       expect(res![0]).toBe(time);
     });

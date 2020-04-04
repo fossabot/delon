@@ -1,13 +1,12 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { fakeAsync, tick, ComponentFixture, TestBed, TestBedStatic } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, TestBedStatic, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ExtraOptions, Router, RouteReuseStrategy, ROUTER_CONFIGURATION } from '@angular/router';
+import { ExtraOptions, Router, ROUTER_CONFIGURATION, RouteReuseStrategy } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable } from 'rxjs';
-
 import { configureTestSuite } from '@delon/testing';
-import { en_US, zh_CN, ALAIN_I18N_TOKEN, DelonLocaleModule, DelonLocaleService, MenuService, ScrollService, WINDOW } from '@delon/theme';
-
+import { ALAIN_I18N_TOKEN, DelonLocaleModule, DelonLocaleService, en_US, MenuService, ScrollService, WINDOW, zh_CN } from '@delon/theme';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { Observable } from 'rxjs';
 import { AlainI18NServiceFake } from '../../theme/src/services/i18n/i18n';
 import { ReuseTabComponent } from './reuse-tab.component';
 import { ReuseCustomContextMenu, ReuseTabMatchMode } from './reuse-tab.interfaces';
@@ -136,30 +135,17 @@ describe('abc: reuse-tab', () => {
 
     describe('#close', () => {
       it('should be close a tab', fakeAsync(() => {
-        page
-          .to('#b')
-          .expectUrl(0, '/a')
-          .expectUrl(1, '/b/1')
-          .close(0)
-          .expectUrl(0, '/b/1');
+        page.to('#b').expectUrl(0, '/a').expectUrl(1, '/b/1').close(0).expectUrl(0, '/b/1');
         expect(layoutComp.close).toHaveBeenCalled();
       }));
       it('should keep one tab when [showCurrent: true]', fakeAsync(() => {
-        page
-          .to('#b')
-          .expectCount(2)
-          .close(0)
-          .expectCount(1);
+        page.to('#b').expectCount(2).close(0).expectCount(1);
         expect(document.querySelectorAll('.anticon-close').length).toBe(0);
       }));
       it('should close all tab when [showCurrent: false]', fakeAsync(() => {
         layoutComp.showCurrent = false;
         fixture.detectChanges();
-        page
-          .to('#b')
-          .expectCount(1)
-          .close(0)
-          .expectCount(0);
+        page.to('#b').expectCount(1).close(0).expectCount(0);
         expect(page.getEl('reuse-tab').style.display).toBe('none');
       }));
       it('should show next tab when closed a has next tab', fakeAsync(() => {
@@ -174,12 +160,7 @@ describe('abc: reuse-tab', () => {
           .expectUrl(1, '/c');
       }));
       it('issues-363', fakeAsync(() => {
-        page
-          .to('#b')
-          .expectCount(2)
-          .close(1)
-          .expectCount(1)
-          .expectAttr(0, 'closable', false);
+        page.to('#b').expectCount(2).close(1).expectCount(1).expectAttr(0, 'closable', false);
       }));
     });
 
@@ -209,13 +190,7 @@ describe('abc: reuse-tab', () => {
         it('with false', fakeAsync(() => {
           layoutComp.showCurrent = false;
           fixture.detectChanges();
-          page
-            .to('#b')
-            .expectCount(1)
-            .expectUrl(0, '/a')
-            .to('#c')
-            .expectCount(2)
-            .expectUrl(1, '/b/1');
+          page.to('#b').expectCount(1).expectUrl(0, '/a').to('#c').expectCount(2).expectUrl(1, '/b/1');
         }));
       });
       describe('#mode', () => {
@@ -285,12 +260,7 @@ describe('abc: reuse-tab', () => {
       beforeEach(() => (srv.max = 10));
       it('should closed current tab', fakeAsync(() => {
         expect(layoutComp.close).not.toHaveBeenCalled();
-        page
-          .to('#b')
-          .expectCount(2)
-          .openContextMenu(1)
-          .clickContentMenu('close')
-          .expectCount(1);
+        page.to('#b').expectCount(2).openContextMenu(1).clickContentMenu('close').expectCount(1);
         expect(layoutComp.close).toHaveBeenCalled();
       }));
       it('should keeping tab if closed include multi prev tab', fakeAsync(() => {
@@ -339,23 +309,10 @@ describe('abc: reuse-tab', () => {
           .expectTime(cTime);
       }));
       it('should keeping tab when closed prev tab', fakeAsync(() => {
-        page
-          .to('#b')
-          .expectCount(2)
-          .openContextMenu(0)
-          .clickContentMenu('close')
-          .expectCount(1)
-          .expectActive(0, true);
+        page.to('#b').expectCount(2).openContextMenu(0).clickContentMenu('close').expectCount(1).expectActive(0, true);
       }));
       it('should keeping tab when closed next tab', fakeAsync(() => {
-        page
-          .to('#b')
-          .go(0)
-          .expectCount(2)
-          .openContextMenu(1)
-          .clickContentMenu('close')
-          .expectCount(1)
-          .expectActive(0, true);
+        page.to('#b').go(0).expectCount(2).openContextMenu(1).clickContentMenu('close').expectCount(1).expectActive(0, true);
       }));
       it('should keeping tab of closed right tab', fakeAsync(() => {
         let bTime = '';
@@ -429,28 +386,17 @@ describe('abc: reuse-tab', () => {
           .expectCount(2);
       }));
       it('should trigger off closeRight when is last', fakeAsync(() => {
-        page
-          .to('#b')
-          .openContextMenu(1)
-          .expectCount(2)
-          .clickContentMenu('closeRight')
-          .expectCount(2);
+        page.to('#b').openContextMenu(1).expectCount(2).clickContentMenu('closeRight').expectCount(2);
       }));
       it('should hide context menu via click', fakeAsync(() => {
-        page
-          .to('#b')
-          .openContextMenu(1)
-          .expectCount(2);
+        page.to('#b').openContextMenu(1).expectCount(2);
         expect(document.querySelectorAll('.reuse-tab__cm').length).toBe(1);
         document.dispatchEvent(new Event('click'));
         page.advance();
         expect(document.querySelectorAll('.reuse-tab__cm').length).toBe(0);
       }));
       it('should be allow multi context menu', fakeAsync(() => {
-        page
-          .to('#b')
-          .openContextMenu(1)
-          .expectCount(2);
+        page.to('#b').openContextMenu(1).expectCount(2);
         expect(document.querySelectorAll('.reuse-tab__cm').length).toBe(1);
         document.dispatchEvent(new MouseEvent('click', { button: 2 }));
         page.advance();
@@ -486,18 +432,12 @@ describe('abc: reuse-tab', () => {
         });
         it('should working', fakeAsync(() => {
           expect(layoutComp.customContextMenu[0].fn).not.toHaveBeenCalled();
-          page
-            .to('#b')
-            .openContextMenu(1)
-            .clickContentMenu('custom1');
+          page.to('#b').openContextMenu(1).clickContentMenu('custom1');
           expect(layoutComp.customContextMenu[0].fn).toHaveBeenCalled();
         }));
         it('should be disabled', fakeAsync(() => {
           expect(layoutComp.customContextMenu[1].fn).not.toHaveBeenCalled();
-          page
-            .to('#b')
-            .openContextMenu(1)
-            .clickContentMenu('custom2');
+          page.to('#b').openContextMenu(1).clickContentMenu('custom2');
           expect(layoutComp.customContextMenu[1].fn).not.toHaveBeenCalled();
         }));
       });
@@ -719,11 +659,7 @@ describe('abc: reuse-tab', () => {
       });
       createComp();
 
-      page
-        .to('#to-d')
-        .to('#to-c')
-        .close(0)
-        .to('#to-d');
+      page.to('#to-d').to('#to-c').close(0).to('#to-d');
     }));
   });
 
@@ -766,7 +702,7 @@ describe('abc: reuse-tab', () => {
       return this;
     }
     expectAttr(pos: number, attrName: string, value: any): this {
-      expect(this.list[pos][attrName]).toBe(value);
+      expect((this.list[pos] as NzSafeAny)[attrName]).toBe(value);
       return this;
     }
     expectActive(pos: number, result: boolean): this {

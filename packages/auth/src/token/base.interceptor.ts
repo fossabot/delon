@@ -1,7 +1,6 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injector, Optional } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-
 import { DelonAuthConfig } from '../auth.config';
 import { ToLogin } from './helper';
 import { ITokenModel } from './interface';

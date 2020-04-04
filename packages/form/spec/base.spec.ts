@@ -1,19 +1,19 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, DebugElement, ViewChild } from '@angular/core';
-import { discardPeriodicTasks, tick, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { configureTestSuite, dispatchFakeEvent, typeInElement } from '@delon/testing';
 import { AlainThemeModule } from '@delon/theme';
 import { deepCopy, deepGet } from '@delon/util';
-
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { configureTestSuite, dispatchFakeEvent, typeInElement } from '@delon/testing';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { SF_SEQ } from '../src/const';
 import { SFButton } from '../src/interface';
 import { FormProperty } from '../src/model/form.property';
 import { DelonFormModule } from '../src/module';
 import { SFSchema } from '../src/schema';
 import { SFUISchema } from '../src/schema/ui';
 import { SFComponent } from '../src/sf.component';
-import { SF_SEQ } from '../src/const';
 
 export const SCHEMA = {
   user: {
@@ -239,7 +239,7 @@ export class SFPage {
 
   checkStyle(cls: string, key: string, value: string): this {
     const el = this.getEl(cls);
-    expect(el.style[key]).toBe(value);
+    expect((el.style as NzSafeAny)[key]).toBe(value);
     return this;
   }
 
