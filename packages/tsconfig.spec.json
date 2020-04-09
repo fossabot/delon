@@ -9,7 +9,8 @@
     ],
     "paths": {
       "@delon/*": ["./*"]
-    }
+    },
+    "noImplicitThis": false
   },
   "files": [
     "test.ts",

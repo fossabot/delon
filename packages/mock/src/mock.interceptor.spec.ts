@@ -1,5 +1,4 @@
 import {
-  HTTP_INTERCEPTORS,
   HttpClient,
   HttpEvent,
   HttpHandler,
@@ -7,12 +6,13 @@ import {
   HttpInterceptor,
   HttpRequest,
   HttpResponse,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Component, NgModule, NgModuleFactoryLoader, Type } from '@angular/core';
+import { Component, NgModule, Type } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
 import * as Mock from 'mockjs';
 import { Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
@@ -217,8 +217,7 @@ describe('mock: interceptor', () => {
     beforeEach(() => genModule({ data: DATA, delay: 1 }));
 
     it('should work', fakeAsync(() => {
-      // tslint:disable-next-line: deprecation
-      const loader = TestBed.inject(NgModuleFactoryLoader);
+      const loader = TestBed.inject(SpyNgModuleFactoryLoader);
       const router = TestBed.inject<Router>(Router);
       @Component({
         selector: 'lazy',

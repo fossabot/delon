@@ -1,7 +1,7 @@
-import { Component, NgModule, NgModuleFactoryLoader } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { fakeAsync, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
 import { DelonAuthModule } from '../../auth.module';
 import { DA_SERVICE_TOKEN, ITokenService } from '../interface';
 import { SimpleGuard } from './simple.guard';
@@ -79,8 +79,7 @@ describe('auth: SimpleGuard', () => {
   });
 
   it(`should be support load module route`, fakeAsync(() => {
-    // tslint:disable-next-line: deprecation
-    const loader = TestBed.inject(NgModuleFactoryLoader);
+    const loader = TestBed.inject(SpyNgModuleFactoryLoader);
     loader.stubbedModules = { expected: AModule };
     router.navigateByUrl('/lazy').then(res => {
       expect(res).toBe(true);

@@ -1,4 +1,5 @@
 import { DecimalPipe } from '@angular/common';
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 import { of, throwError } from 'rxjs';
 
 import { CNCurrencyPipe, DatePipe, YNPipe } from '@delon/theme';
@@ -163,7 +164,7 @@ describe('abc: table: data-souce', () => {
         };
       });
       it(`should be decremented`, done => {
-        options.data[1].id = 100000;
+        (options.data as STData[])[1].id = 100000;
         options.columns[0]._sort!.default = 'descend';
         srv.process(options).subscribe(res => {
           expect(res.list[0].id).toBe(100000);
@@ -171,7 +172,7 @@ describe('abc: table: data-souce', () => {
         });
       });
       it(`should be incremented`, done => {
-        options.data[1].id = -100000;
+        (options.data as STData[])[1].id = -100000;
         options.columns[0]._sort!.default = 'ascend';
         srv.process(options).subscribe(res => {
           expect(res.list[0].id).toBe(-100000);
@@ -184,7 +185,7 @@ describe('abc: table: data-souce', () => {
           compare: null,
           default: 'descend',
         };
-        options.data[1].id = 100000;
+        (options.data as STData[])[1].id = 100000;
         srv.process(options).subscribe(res => {
           expect(res.list[0].id).toBe(11);
           done();
@@ -311,8 +312,7 @@ describe('abc: table: data-souce', () => {
       });
       it('should be process', done => {
         options.req.process = a => {
-          // tslint:disable-next-line:no-string-literal
-          a.params!['PI'] = 2;
+          (a.params as NzSafeAny)!.PI = 2;
           return a;
         };
         let resParams: any = {};
@@ -575,7 +575,10 @@ describe('abc: table: data-souce', () => {
           type: 'default',
           default: true,
           key: 'id',
-          menus: [{ text: '', value: 'a', checked: true }, { text: '', value: 'b', checked: true }],
+          menus: [
+            { text: '', value: 'a', checked: true },
+            { text: '', value: 'b', checked: true },
+          ],
         };
         spyOn(http, 'request').and.callFake((_method: string, _url: string, opt: any) => {
           resParams = opt.params;
@@ -698,7 +701,7 @@ describe('abc: table: data-souce', () => {
         });
         it('without value', done => {
           options.columns[0].type = 'img';
-          options.data[0].id = '';
+          (options.data as STData[])[0].id = '';
           srv.process(options).subscribe(res => {
             expect(res.list[0]._values[0].text).toBe(``);
             done();
@@ -808,7 +811,7 @@ describe('abc: table: data-souce', () => {
     });
 
     it('should be custom function', done => {
-      let callbackRawData = null;
+      let callbackRawData: NzSafeAny = null;
       options.columns = [
         {
           title: '',
