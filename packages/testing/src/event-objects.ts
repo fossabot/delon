@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -5,6 +6,49 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+
+/** Creates a browser MouseEvent with the specified options. */
+export function createMouseEvent(type: string, x = 0, y = 0) {
+  const event = document.createEvent('MouseEvent');
+
+  event.initMouseEvent(
+    type,
+    false /* canBubble */,
+    false /* cancelable */,
+    window /* view */,
+    0 /* detail */,
+    x /* screenX */,
+    y /* screenY */,
+    x /* clientX */,
+    y /* clientY */,
+    false /* ctrlKey */,
+    false /* altKey */,
+    false /* shiftKey */,
+    false /* metaKey */,
+    0 /* button */,
+    null /* relatedTarget */,
+  );
+
+  return event;
+}
+
+/** Creates a browser TouchEvent with the specified pointer coordinates. */
+export function createTouchEvent(type: string, pageX = 0, pageY = 0) {
+  // In favor of creating events that work for most of the browsers, the event is created
+  // as a basic UI Event. The necessary details for the event will be set manually.
+  const event = document.createEvent('UIEvent');
+  const touchDetails = { pageX, pageY };
+
+  (event as NzSafeAny).initUIEvent(type, true, true, window, 0);
+
+  // Most of the browsers don't have a "initTouchEvent" method that can be used to define
+  // the touch details.
+  Object.defineProperties(event, {
+    touches: { value: [touchDetails] },
+  });
+
+  return event;
+}
 
 /** Dispatches a keydown event from an element. */
 export function createKeyboardEvent(type: string, keyCode: number, target?: Element, key?: string) {

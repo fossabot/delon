@@ -1,4 +1,3 @@
-import { dispatchMouseEvent } from '@angular/cdk/testing/testbed/fake-events';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { Component, DebugElement, ViewChild } from '@angular/core';
@@ -6,7 +5,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { configureTestSuite, createTestContext, dispatchMouseEvent } from '@delon/testing';
 import differenceInDays from 'date-fns/differenceInDays';
 import { DateRangePickerShortcut } from './date-picker.config';
 import { DatePickerModule } from './date-picker.module';
@@ -69,7 +68,7 @@ describe('abc: date-picker: range', () => {
     it('should be disabled', () => {
       context.comp.setDisabledState(true);
       fixture.detectChanges();
-      expect(dl.queryAll(By.css('.ant-input-disabled')).length).toBe(1);
+      expect(dl.queryAll(By.css('.ant-picker-disabled')).length).toBe(1);
     });
   });
 
@@ -131,7 +130,7 @@ describe('abc: date-picker: range', () => {
   });
 
   function openPicker(): HTMLInputElement {
-    const el = dl.query(By.css('nz-picker .ant-calendar-picker')).nativeElement as HTMLInputElement;
+    const el = dl.query(By.css('.ant-picker-input')).nativeElement as HTMLInputElement;
     dispatchMouseEvent(el, 'click');
     timeEnd();
     return el;
@@ -144,7 +143,7 @@ describe('abc: date-picker: range', () => {
   }
 
   function getPickerFooterExtra(): HTMLElement {
-    return dl.query(By.css('.ant-calendar-footer-extra')).nativeElement as HTMLElement;
+    return dl.query(By.css('.ant-picker-footer-extra')).nativeElement as HTMLElement;
   }
 });
 
