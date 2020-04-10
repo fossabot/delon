@@ -11,6 +11,7 @@ dist
 coverage
 .idea
 debug.log
+__ngcc_entry_points__.json
 
 src/app/routes/gen
 src/assets/color.less
