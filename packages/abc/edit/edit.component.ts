@@ -19,6 +19,7 @@ import {
 import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { deepGet, InputBoolean, InputNumber, isEmpty } from '@delon/util';
+import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { Subscription } from 'rxjs';
 import { SEContainerComponent } from './edit-container.component';
 
@@ -32,9 +33,11 @@ let nextUniqueId = 0;
   host: {
     '[style.padding-left.px]': 'paddingValue',
     '[style.padding-right.px]': 'paddingValue',
-    '[class.ant-form-item-with-help]': 'showErr',
+    '[class.ant-form-item-has-error]': 'showErr',
+    '[class.ant-form-item-with-help]': 'showErr && !compact',
   },
   preserveWhitespaces: false,
+  animations: [helpMotion],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -85,7 +88,11 @@ export class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, 
   }
 
   get showErr(): boolean {
-    return this.invalid && this.parent.size !== 'compact' && !!this._error;
+    return this.invalid && !!this._error;
+  }
+
+  get compact(): boolean {
+    return this.parent.size === 'compact';
   }
 
   private get ngControl(): NgModel | FormControlName {

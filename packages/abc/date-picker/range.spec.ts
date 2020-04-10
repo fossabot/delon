@@ -103,19 +103,19 @@ describe('abc: date-picker: range', () => {
       context.shortcut = false;
       fixture.detectChanges();
       openPicker();
-      expect(dl.query(By.css('.ant-calendar-footer-extra')) == null).toBe(true);
+      expect(dl.query(By.css('.ant-picker-footer-extra')) == null).toBe(true);
     }));
     it('with null', fakeAsync(() => {
       context.shortcut = null;
       fixture.detectChanges();
       openPicker();
-      expect(dl.query(By.css('.ant-calendar-footer-extra')) == null).toBe(true);
+      expect(dl.query(By.css('.ant-picker-footer-extra')) == null).toBe(true);
     }));
     it('should be keeping open panel when closed is false', fakeAsync(() => {
       context.shortcut = { closed: false, enabled: true };
       fixture.detectChanges();
       openPicker();
-      expect(dl.query(By.css('.ant-calendar-footer-extra')) == null).toBe(false);
+      expect(dl.query(By.css('.ant-picker-footer-extra')) == null).toBe(false);
       getPickerFooterExtra().querySelectorAll('a')[0].click();
       const list = getPickerFooterExtra().querySelectorAll('a');
       const shortcut = context.comp.shortcut as DateRangePickerShortcut;
@@ -125,12 +125,12 @@ describe('abc: date-picker: range', () => {
         timeEnd();
       });
       timeEnd();
-      expect(dl.query(By.css('.ant-calendar-footer-extra')) == null).toBe(false);
+      expect(dl.query(By.css('.ant-picker-footer-extra')) == null).toBe(false);
     }));
   });
 
   function openPicker(): HTMLInputElement {
-    const el = dl.query(By.css('.ant-picker-input')).nativeElement as HTMLInputElement;
+    const el = dl.query(By.css('.ant-picker-input input')).nativeElement as HTMLInputElement;
     dispatchMouseEvent(el, 'click');
     timeEnd();
     return el;
