@@ -2,7 +2,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Inject, Injector } from '@angular/core';
 import { ACLService } from '@delon/acl';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable, throwError } from 'rxjs';
 import { _HttpClient } from './http.client';
 

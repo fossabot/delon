@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { configureTestSuite } from '@delon/testing';
 import { _HttpClient } from '@delon/theme';
 import * as fs from 'file-saver';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DownFileDirective } from './down-file.directive';
 import { DownFileModule } from './down-file.module';
 

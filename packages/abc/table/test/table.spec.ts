@@ -7,7 +7,7 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable, of, Subject } from 'rxjs';
 
 import { ALAIN_I18N_TOKEN, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, en_US, ModalHelper } from '@delon/theme';

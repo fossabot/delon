@@ -21,8 +21,8 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  ALAIN_I18N_TOKEN,
   AlainI18NService,
+  ALAIN_I18N_TOKEN,
   CNCurrencyPipe,
   DatePipe,
   DelonLocaleService,
@@ -32,7 +32,7 @@ import {
   YNPipe,
 } from '@delon/theme';
 import { deepMerge, deepMergeKey, InputBoolean, InputNumber, toBoolean, updateHostClass } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzTableComponent } from 'ng-zorro-antd/table';
 import { from, Observable, of, Subject, Subscription } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';

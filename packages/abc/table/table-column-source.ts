@@ -1,9 +1,9 @@
 import { Host, Inject, Injectable, Optional } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
-import { ALAIN_I18N_TOKEN, AlainI18NService } from '@delon/theme';
+import { AlainI18NService, ALAIN_I18N_TOKEN } from '@delon/theme';
 import { deepCopy } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { STRowSource } from './table-row.directive';
 import { STConfig } from './table.config';
 import { STColumn, STColumnButton, STColumnButtonPop, STColumnFilter, STIcon, STSortMap } from './table.interfaces';

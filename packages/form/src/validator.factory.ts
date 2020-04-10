@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonFormConfig } from './config';
 import { ErrorData } from './errors';
 import { SFValue } from './interface';

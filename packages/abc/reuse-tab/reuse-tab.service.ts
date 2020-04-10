@@ -9,7 +9,7 @@ import {
   ROUTER_CONFIGURATION,
 } from '@angular/router';
 import { MenuService, ScrollService } from '@delon/theme';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BehaviorSubject, Observable, Unsubscribable } from 'rxjs';
 import { ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
 

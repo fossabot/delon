@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NzTreeBaseService, NzTreeNode } from 'ng-zorro-antd/core/tree';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { deepCopy } from '../other/other';
 import { DelonUtilConfig } from '../util.config';
 import { DelonUtilModule } from '../util.module';

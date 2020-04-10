@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, flush, TestBed, tick } from '@angular/core/testing';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 export type PageG2Type = 'geoms' | 'views';
 

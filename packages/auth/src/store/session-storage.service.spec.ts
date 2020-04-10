@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ITokenModel } from '../token/interface';
 import { SessionStorageStore } from './session-storage.service';
 

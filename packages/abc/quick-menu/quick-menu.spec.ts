@@ -2,7 +2,7 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { QuickMenuComponent } from './quick-menu.component';
 import { QuickMenuModule } from './quick-menu.module';
 

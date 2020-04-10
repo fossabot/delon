@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LazyResult, LazyService } from '@delon/util';
 import { saveAs } from 'file-saver';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { XlsxConfig } from './xlsx.config';
 import { XlsxExportOptions, XlsxExportSheet } from './xlsx.types';
 

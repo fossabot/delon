@@ -2,8 +2,7 @@ import { Component, EventEmitter, forwardRef, Input, Output, TemplateRef, ViewCh
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { deepMergeKey, fixEndTimeOfRange, InputBoolean } from '@delon/util';
-import { FunctionProp } from 'ng-zorro-antd/core/types';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { FunctionProp, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
 import { DatePickerConfig, DateRangePickerConfig, DateRangePickerShortcut, DateRangePickerShortcutItem } from './date-picker.config';
 

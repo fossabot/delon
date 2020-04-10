@@ -3,7 +3,7 @@ import { DelonFormModule } from '@delon/form';
 // mock
 import { DelonMockModule } from '@delon/mock';
 import { AlainThemeModule } from '@delon/theme';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as MOCKDATA from '../../_mock';
 import { throwIfAlreadyLoaded } from './core/module-import-guard';
 

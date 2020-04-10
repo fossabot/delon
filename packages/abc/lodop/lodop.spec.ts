@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { LazyService } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { concat } from 'rxjs';
 import { filter, flatMap, tap } from 'rxjs/operators';
 import { LodopConfig } from './lodop.config';

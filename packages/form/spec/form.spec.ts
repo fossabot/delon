@@ -3,9 +3,9 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { configureTestSuite, createTestContext } from '@delon/testing';
-import { ALAIN_I18N_TOKEN, AlainI18NService, AlainThemeModule, DelonLocaleService, en_US } from '@delon/theme';
+import { AlainI18NService, AlainThemeModule, ALAIN_I18N_TOKEN, DelonLocaleService, en_US } from '@delon/theme';
 import { deepCopy } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { of } from 'rxjs';
 import { FormPropertyFactory } from '../src/model/form.property.factory';
 import { DelonFormModule } from '../src/module';

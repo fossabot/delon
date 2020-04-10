@@ -1,5 +1,5 @@
 import { deepCopy, toBoolean } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';

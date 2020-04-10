@@ -17,9 +17,9 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
-import { ALAIN_I18N_TOKEN, AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
+import { AlainI18NService, ALAIN_I18N_TOKEN, DelonLocaleService, LocaleData } from '@delon/theme';
 import { deepCopy, InputBoolean } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { merge, Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { DelonFormConfig } from './config';

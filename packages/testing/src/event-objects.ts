@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.

@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { filter } from 'rxjs/operators';
 import { DelonLocaleService } from './locale.service';
 

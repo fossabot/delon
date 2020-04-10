@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { of, throwError } from 'rxjs';
 
 import { CNCurrencyPipe, DatePipe, YNPipe } from '@delon/theme';

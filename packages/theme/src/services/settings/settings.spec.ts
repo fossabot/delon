@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SettingsService } from './settings.service';
 
 describe('Service: Settings', () => {

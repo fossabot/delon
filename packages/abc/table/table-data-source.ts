@@ -3,7 +3,7 @@ import { Host, Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { deepCopy, deepGet } from '@delon/util';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {

@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { Type } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { AlainThemeModule } from '@delon/theme';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { DelonCacheConfig } from './cache.config';

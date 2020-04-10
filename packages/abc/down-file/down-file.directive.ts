@@ -2,7 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Directive, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { saveAs } from 'file-saver';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 @Directive({
   selector: '[down-file]',

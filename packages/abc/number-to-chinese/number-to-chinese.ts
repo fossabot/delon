@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NumberToChineseOptions } from './number-to-chinese.interfaces';
 
 export function numberToChinese(value: number | string, rmb = true, options?: NumberToChineseOptions): string {

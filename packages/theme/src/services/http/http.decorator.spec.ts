@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { NzSafeAny } from 'ng-zorro-antd/core/types/any';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { _HttpClient } from './http.client';
 import {
