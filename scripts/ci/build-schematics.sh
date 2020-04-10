@@ -239,7 +239,8 @@ integrationCli() {
   INTEGRATION_SOURCE=${PWD}/integration
   mkdir -p ${INTEGRATION_SOURCE}
   cd ${INTEGRATION_SOURCE}
-  echo ">>> Generate a new angular project, Current dir: ${PWD}"
+  echo ">>> Generate a new angular project, Current dir: ${PWD}, using anguar version:"
+  echo ng version
   ng new integration --style=less --routing=true
   INTEGRATION_SOURCE=${PWD}/integration
   cd ${INTEGRATION_SOURCE}

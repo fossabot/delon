@@ -14,6 +14,12 @@ hot: true
 + import format from 'date-fns/format';
 ```
 
+## 可选升级
+
+### tslint
+
+- `import-blacklist` 新增 `"ng-zorro-antd", "@delon/abc", "@delon/chart"` 强制只能使用次级导入
+
 ## G2 升级至 `4.0`
 
 ### angular.json
