@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import format from 'date-fns/format';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { SFValue } from '../../interface';
 import { FormProperty } from '../../model/form.property';
-import { isDateFns, toBool } from '../../utils';
+import { toBool } from '../../utils';
 import { ControlUIWidget } from '../../widget';
 import { SFDateWidgetSchema } from './schema';
 
@@ -22,10 +21,6 @@ export class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements O
   displayFormat: string;
   i: any;
 
-  private get zorroI18n(): NzI18nService {
-    return this.injector.get<NzI18nService>(NzI18nService);
-  }
-
   ngOnInit(): void {
     const { mode, end, displayFormat, allowClear, showToday } = this.ui;
     this.mode = mode || 'date';
@@ -38,16 +33,15 @@ export class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements O
       this.endFormat = endUi.format ? endUi._format : this.startFormat;
     }
     if (!displayFormat) {
-      const usingDateFns = isDateFns(this.zorroI18n);
       switch (this.mode) {
         case 'year':
-          this.displayFormat = usingDateFns ? `YYYY` : `yyyy`;
+          this.displayFormat = `yyyy`;
           break;
         case 'month':
-          this.displayFormat = usingDateFns ? `YYYY-MM` : `yyyy-MM`;
+          this.displayFormat = `yyyy-MM`;
           break;
         case 'week':
-          this.displayFormat = usingDateFns ? `YYYY-WW` : `yyyy-ww`;
+          this.displayFormat = `yyyy-ww`;
           break;
       }
     } else {

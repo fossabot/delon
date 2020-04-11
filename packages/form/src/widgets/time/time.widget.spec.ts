@@ -82,7 +82,7 @@ describe('form: widget: time', () => {
         };
         page.newSchema(s);
         const comp = getComp();
-        expect(format(comp.value, 'yyyy-MM-dd')).toBe('1970-01-01');
+        expect(comp.value).toBe(null);
       });
     });
 

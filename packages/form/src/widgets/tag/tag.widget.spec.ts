@@ -132,7 +132,7 @@ describe('form: widget: tag', () => {
             },
           })
           .typeEvent('click', '.anticon')
-          .checkCount('.ant-tag', 2);
+          .checkCount('.ant-tag', 2, true);
       }));
       it('should be call close events', fakeAsync(() => {
         const s: SFSchema = {

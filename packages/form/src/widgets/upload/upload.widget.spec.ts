@@ -210,8 +210,6 @@ describe('form: widget: upload', () => {
         },
       },
     });
-    page.checkValue('/a', 10);
-    page.click('.anticon-close');
-    page.checkValue('/a', '');
+    page.checkValue('/a', 10).click('.anticon-delete').checkValue('/a', '');
   });
 });
