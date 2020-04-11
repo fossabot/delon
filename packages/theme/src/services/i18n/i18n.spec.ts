@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AlainThemeModule } from '../../theme.module';
@@ -24,6 +24,7 @@ describe('theme: i18n', () => {
     let fixture: ComponentFixture<TestComponent>;
     let srv: AlainI18NService;
 
+    @Injectable()
     class MockI18NService extends AlainI18NServiceFake {
       data: any = {};
       use(_lang: string) {

@@ -18,14 +18,14 @@ describe('Pipe: _date', () => {
       declarations: [TestComponent],
     });
     fixture = TestBed.createComponent(TestComponent);
-    (window as any).__locale__ = zh_cn;
+    (window as any).__locale__ = zh_cn.default;
   });
 
   [
     { date, result: `2017-10-17 15:35` },
     { date: +date, result: `2017-10-17 15:35` },
     { date: (+date).toString(), result: `2017-10-17 15:35` },
-    { date, result: `2017年10月17日`, format: 'YYYY年MM月DD日' },
+    { date, result: `2017年10月17日`, format: 'yyyy年MM月dd日' },
     { date: null, result: `` },
     { date: undefined, result: `` },
     { date, result: ``, format: 'fn' },

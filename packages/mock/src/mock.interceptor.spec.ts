@@ -9,7 +9,7 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Component, NgModule, Type } from '@angular/core';
+import { Component, NgModule, NgModuleFactoryLoader, Type } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule, SpyNgModuleFactoryLoader } from '@angular/router/testing';
@@ -217,7 +217,7 @@ describe('mock: interceptor', () => {
     beforeEach(() => genModule({ data: DATA, delay: 1 }));
 
     it('should work', fakeAsync(() => {
-      const loader = TestBed.inject(SpyNgModuleFactoryLoader);
+      const loader = TestBed.inject(NgModuleFactoryLoader) as SpyNgModuleFactoryLoader;
       const router = TestBed.inject<Router>(Router);
       @Component({
         selector: 'lazy',

@@ -1,7 +1,7 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { createTestContext } from '@delon/testing';
 import { REP_MAX } from '@delon/theme';
 import { SVContainerComponent } from './view-container.component';
 import { SVComponent } from './view.component';
@@ -34,7 +34,7 @@ describe('abc: view', () => {
   }
 
   describe('', () => {
-    configureTestSuite(moduleAction);
+    beforeEach(moduleAction);
 
     it('General Configuration', inject([SVConfig], (cog: SVConfig) => {
       cog.gutter = 24;

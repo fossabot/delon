@@ -1,7 +1,7 @@
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { createTestContext } from '@delon/testing';
 import { DelonLocaleModule, DelonLocaleService, en_US, zh_CN } from '@delon/theme';
 import { TagSelectComponent } from './tag-select.component';
 import { TagSelectModule } from './tag-select.module';
@@ -11,14 +11,11 @@ describe('abc: tag-select', () => {
   let dl: DebugElement;
   let context: TestComponent;
 
-  configureTestSuite(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TagSelectModule, DelonLocaleModule],
       declarations: [TestComponent],
     });
-  });
-
-  beforeEach(() => {
     ({ fixture, dl, context } = createTestContext(TestComponent));
     fixture.detectChanges();
   });
