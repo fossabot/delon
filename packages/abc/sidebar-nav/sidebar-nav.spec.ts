@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ACLService } from '@delon/acl';
-import { configureTestSuite } from '@delon/testing';
 import { AlainThemeModule, MenuIcon, MenuService, SettingsService, WINDOW } from '@delon/theme';
 import { deepCopy } from '@delon/util';
 import { SidebarNavComponent } from './sidebar-nav.component';
@@ -121,7 +120,7 @@ describe('abc: sidebar-nav', () => {
   afterEach(() => context.comp.ngOnDestroy());
 
   describe('', () => {
-    configureTestSuite(createModule);
+    beforeEach(() => createModule());
 
     describe('[default]', () => {
       it('should be navigate url', () => {
@@ -459,7 +458,7 @@ describe('abc: sidebar-nav', () => {
   });
 
   describe('should be recursive path', () => {
-    configureTestSuite(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
           RouterModule.forRoot([]),

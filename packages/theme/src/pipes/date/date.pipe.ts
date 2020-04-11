@@ -5,7 +5,7 @@ import parseISO from 'date-fns/parseISO';
 
 @Pipe({ name: '_date' })
 export class DatePipe implements PipeTransform {
-  transform(value: Date | string | number, formatString: string = 'YYYY-MM-DD HH:mm'): string {
+  transform(value: Date | string | number, formatString: string = 'yyyy-MM-dd HH:mm'): string {
     value = typeof value === 'string' ? parseISO(value) : value;
     if (value) {
       if (formatString === 'fn') {

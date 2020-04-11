@@ -3,7 +3,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import { ExtraOptions, Router, RouteReuseStrategy, ROUTER_CONFIGURATION } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { configureTestSuite } from '@delon/testing';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule, DelonLocaleService, en_US, MenuService, ScrollService, WINDOW, zh_CN } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
@@ -105,9 +104,10 @@ describe('abc: reuse-tab', () => {
   afterEach(() => rtComp.ngOnDestroy());
 
   describe('', () => {
-    configureTestSuite(genModule);
-
-    beforeEach(fakeAsync(() => createComp()));
+    beforeEach(fakeAsync(() => {
+      genModule();
+      createComp();
+    }));
 
     describe('[default]', () => {
       it('should be create an instance', fakeAsync(() => {

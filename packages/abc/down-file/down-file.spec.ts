@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { configureTestSuite } from '@delon/testing';
 import { _HttpClient } from '@delon/theme';
 import * as fs from 'file-saver';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -23,14 +22,12 @@ describe('abc: down-file', () => {
   let context: TestComponent;
   let httpBed: HttpTestingController;
 
-  configureTestSuite(() => {
+  function createComp() {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, DownFileModule],
       declarations: [TestComponent],
     });
-  });
 
-  function createComp() {
     fixture = TestBed.createComponent(TestComponent);
     dl = fixture.debugElement;
     context = fixture.componentInstance;

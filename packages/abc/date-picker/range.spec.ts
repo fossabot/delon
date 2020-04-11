@@ -5,7 +5,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite, createTestContext, dispatchMouseEvent } from '@delon/testing';
+import { createTestContext, dispatchMouseEvent } from '@delon/testing';
 import differenceInDays from 'date-fns/differenceInDays';
 import { DateRangePickerShortcut } from './date-picker.config';
 import { DatePickerModule } from './date-picker.module';
@@ -18,14 +18,11 @@ describe('abc: date-picker: range', () => {
   let dl: DebugElement;
   let context: TestComponent;
 
-  configureTestSuite(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [DatePickerModule, FormsModule, NoopAnimationsModule],
       declarations: [TestComponent],
     });
-  });
-
-  beforeEach(() => {
     ({ fixture, dl, context } = createTestContext(TestComponent));
     fixture.detectChanges();
     spyOn(context, '_nzOnOpenChange');

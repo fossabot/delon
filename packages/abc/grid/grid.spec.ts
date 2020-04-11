@@ -2,7 +2,7 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { createTestContext } from '@delon/testing';
 import { REP_MAX } from '@delon/theme/src/services/responsive/responsive';
 import { SGContainerComponent } from './grid-container.component';
 import { SGComponent } from './grid.component';
@@ -37,7 +37,8 @@ describe('abc: grid', () => {
   }
 
   describe('', () => {
-    configureTestSuite(moduleAction);
+    beforeEach(() => moduleAction());
+
     it('General Configuration', inject([SGConfig], (cog: SGConfig) => {
       cog.gutter = 24;
       ({ fixture, dl, context } = createTestContext(TestComponent));

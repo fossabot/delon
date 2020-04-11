@@ -4,8 +4,8 @@ import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/cor
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { configureTestSuite, createTestContext } from '@delon/testing';
-import { ALAIN_I18N_TOKEN, AlainI18NService, AlainI18NServiceFake, MenuService, SettingsService, TitleService } from '@delon/theme';
+import { createTestContext } from '@delon/testing';
+import { AlainI18NService, AlainI18NServiceFake, ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { NzAffixComponent } from 'ng-zorro-antd/affix';
 import { ReuseTabService } from '../reuse-tab/reuse-tab.service';
 import { PageHeaderComponent } from './page-header.component';
@@ -61,7 +61,7 @@ describe('abc: page-header', () => {
   afterEach(() => context.comp.ngOnDestroy());
 
   describe('', () => {
-    configureTestSuite(() => {
+    beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule.withRoutes([{ path: '1-1/:name', component: TestComponent }]), PageHeaderModule],
         providers: [{ provide: APP_BASE_HREF, useValue: '/' }, SettingsService],

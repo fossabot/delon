@@ -3,7 +3,7 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { createTestContext } from '@delon/testing';
 import { DelonLocaleModule, DelonLocaleService, en_US, zh_CN } from '@delon/theme';
 import { NoticeIconComponent } from './notice-icon.component';
 import { NoticeIconModule } from './notice-icon.module';
@@ -14,14 +14,13 @@ describe('abc: notice-icon', () => {
   let dl: DebugElement;
   let context: TestComponent;
 
-  configureTestSuite(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, NoticeIconModule, HttpClientTestingModule, DelonLocaleModule],
       declarations: [TestComponent],
     });
+    ({ fixture, dl, context } = createTestContext(TestComponent));
   });
-
-  beforeEach(() => ({ fixture, dl, context } = createTestContext(TestComponent)));
 
   afterEach(() => {
     context.comp.ngOnDestroy();
@@ -64,43 +63,55 @@ describe('abc: notice-icon', () => {
         });
       });
     });
-    it('should be control loading in visible popover', () => {
+    it('should be control loading in visible popover', done => {
       context.loading = true;
       context.popoverVisible = true;
       fixture.detectChanges();
-      const el = document.querySelector('.ant-spin-container') as HTMLElement;
-      expect(el.style.display).toBe('');
+      fixture.whenStable().then(() => {
+        const el = document.querySelector('.ant-spin-container') as HTMLElement;
+        expect(el.style.display).toBe('');
+        done();
+      });
     });
-    it('should be select item', () => {
+    it('should be select item', done => {
       spyOn(context, 'select');
       context.popoverVisible = true;
       fixture.detectChanges();
-      expect(context.select).not.toHaveBeenCalled();
-      (document.querySelector('nz-list-item')! as HTMLElement).click();
-      fixture.detectChanges();
-      expect(context.select).toHaveBeenCalled();
+      fixture.whenStable().then(() => {
+        expect(context.select).not.toHaveBeenCalled();
+        (document.querySelector('nz-list-item')! as HTMLElement).click();
+        fixture.detectChanges();
+        expect(context.select).toHaveBeenCalled();
+        done();
+      });
     });
-    it('should be clear', () => {
+    it('should be clear', done => {
       spyOn(context, 'clear');
       context.popoverVisible = true;
       fixture.detectChanges();
-      expect(context.clear).not.toHaveBeenCalled();
-      (document.querySelector('.notice-icon__clear')! as HTMLElement).click();
-      fixture.detectChanges();
-      expect(context.clear).toHaveBeenCalled();
+      fixture.whenStable().then(() => {
+        expect(context.clear).not.toHaveBeenCalled();
+        (document.querySelector('.notice-icon__clear')! as HTMLElement).click();
+        fixture.detectChanges();
+        expect(context.clear).toHaveBeenCalled();
+        done();
+      });
     });
   });
 
-  it('#i18n', () => {
+  it('#i18n', done => {
     context.popoverVisible = true;
     context.data = [{ title: 'a1', list: [] }];
     fixture.detectChanges();
-    const a = document.querySelector('.notice-icon__notfound')! as HTMLElement;
-    expect(a.innerText).toBe(zh_CN.noticeIcon.emptyText);
-    const srv = TestBed.inject<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
-    srv.setLocale(en_US);
-    fixture.detectChanges();
-    expect(a.innerText).toBe(en_US.noticeIcon.emptyText);
+    fixture.whenStable().then(() => {
+      const a = document.querySelector('.notice-icon__notfound')! as HTMLElement;
+      expect(a.innerText).toBe(zh_CN.noticeIcon.emptyText);
+      const srv = TestBed.inject<DelonLocaleService>(DelonLocaleService) as DelonLocaleService;
+      srv.setLocale(en_US);
+      fixture.detectChanges();
+      expect(a.innerText).toBe(en_US.noticeIcon.emptyText);
+      done();
+    });
   });
 });
 

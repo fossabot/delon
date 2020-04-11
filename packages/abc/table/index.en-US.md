@@ -249,7 +249,7 @@ Property | Description | Type | Default
 `[filter]` | Filter config of this column | `STColumnFilter` | -
 `[selections]` | Config of type is checkbox | `STColumnSelection[]` | -
 `[numberDigits]` | Config of type is number | `string` | -
-`[dateFormat]` | Config of type is date | `YYYY-MM-DD HH:mm`
+`[dateFormat]` | Config of type is date | `yyyy-MM-dd HH:mm`
 `[yn]` | Config of type is yn | `STColumnYn` | -
 `[exported]` | Whether to allow export | `boolean` | `true`
 `[acl]` | ACL permission (Use `can()` verify) | `ACLCanType` | -

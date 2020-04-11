@@ -116,7 +116,7 @@ export class RangePickerComponent implements ControlValueAccessor {
     this.valueChange(this.value as [Date, Date]);
     if (this._shortcut.closed) {
       // tslint:disable-next-line:no-string-literal
-      (this.comp.datePicker as NzSafeAny)['picker'].hideOverlay();
+      (this.comp as NzSafeAny)['picker'].hideOverlay();
     }
   }
 }

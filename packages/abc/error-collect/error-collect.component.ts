@@ -45,7 +45,7 @@ export class ErrorCollectComponent implements OnInit, OnDestroy {
   }
 
   private get errEls(): NodeListOf<HTMLElement> {
-    return this.formEl!.querySelectorAll('.has-error');
+    return this.formEl!.querySelectorAll('.ant-form-item-has-error');
   }
 
   private update(): void {

@@ -18,8 +18,9 @@ import {
 } from '@angular/core';
 import { FormControlName, NgModel } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
-import { deepGet, InputBoolean, InputNumber, isEmpty } from '@delon/util';
+import { InputBoolean, InputNumber, isEmpty } from '@delon/util';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Subscription } from 'rxjs';
 import { SEContainerComponent } from './edit-container.component';
 
@@ -133,7 +134,7 @@ export class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, 
     this.status$ = this.ngControl.statusChanges!.subscribe(res => this.updateStatus(res === 'INVALID'));
 
     if (this._autoId) {
-      const control = deepGet(this.ngControl.valueAccessor, '_elementRef.nativeElement') as HTMLElement;
+      const control = (this.ngControl.valueAccessor as NzSafeAny)?._elementRef.nativeElement as HTMLElement;
       if (control) {
         control.id = this._id;
       }

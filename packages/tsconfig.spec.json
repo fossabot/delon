@@ -10,9 +10,7 @@
     "paths": {
       "@delon/*": ["./*"]
     },
-    "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es5",
     "noImplicitThis": false
   },
   "files": [

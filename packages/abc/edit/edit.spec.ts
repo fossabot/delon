@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { configureTestSuite, createTestContext } from '@delon/testing';
 import { REP_MAX } from '@delon/theme';
-import * as UTIL from '@delon/util';
 
 import { SEContainerComponent } from './edit-container.component';
 import { SEComponent } from './edit.component';
@@ -356,11 +355,10 @@ describe('abc: edit', () => {
       expect(page.getEl('label').getAttribute('for')).toBe(id);
     });
     it(`should be ingored auto id when not found invalid ngModel`, () => {
-      spyOn(UTIL, 'deepGet').and.returnValue(null);
       genModule(`
       <form nz-form se-container>
         <se label="a">
-          <select id="expected" [(ngModel)]="val" name="val"></select>
+          <select id="expected" name="val"></select>
         </se>
       </form>
       `);
