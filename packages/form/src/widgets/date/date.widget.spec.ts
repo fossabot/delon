@@ -124,13 +124,13 @@ describe('form: widget: date', () => {
   });
 
   describe('#format', () => {
-    it('should be default YYYY-MM-DD HH:mm:ss', () => {
+    it('should be default yyyy-MM-dd HH:mm:ss', () => {
       const s: SFSchema = {
         properties: { a: { type: 'string', ui: { widget } } },
       };
       page.newSchema(s);
       const comp = getComp();
-      expect(comp['startFormat']).toBe('YYYY-MM-DD HH:mm:ss');
+      expect(comp['startFormat']).toBe('yyyy-MM-dd HH:mm:ss');
     });
     it('should be spcify format', () => {
       const s: SFSchema = {

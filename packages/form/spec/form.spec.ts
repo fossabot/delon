@@ -2,7 +2,7 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ACLService, DelonACLModule } from '@delon/acl';
-import { configureTestSuite, createTestContext } from '@delon/testing';
+import { createTestContext } from '@delon/testing';
 import { AlainI18NService, AlainThemeModule, ALAIN_I18N_TOKEN, DelonLocaleService, en_US } from '@delon/theme';
 import { deepCopy } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -21,18 +21,16 @@ describe('form: component', () => {
 
   function genModule(options: { acl?: boolean; i18n?: boolean } = {}) {
     options = { acl: false, i18n: false, ...options };
-    configureTestSuite(() => {
-      const imports = [NoopAnimationsModule, DelonFormModule.forRoot()];
-      if (options.i18n) {
-        imports.push(AlainThemeModule.forRoot());
-      }
-      if (options.acl) {
-        imports.push(DelonACLModule.forRoot());
-      }
-      TestBed.configureTestingModule({
-        imports,
-        declarations: [TestFormComponent, TestModeComponent],
-      });
+    const imports = [NoopAnimationsModule, DelonFormModule.forRoot()];
+    if (options.i18n) {
+      imports.push(AlainThemeModule.forRoot());
+    }
+    if (options.acl) {
+      imports.push(DelonACLModule.forRoot());
+    }
+    TestBed.configureTestingModule({
+      imports,
+      declarations: [TestFormComponent, TestModeComponent],
     });
   }
 
@@ -43,9 +41,8 @@ describe('form: component', () => {
   }
 
   describe('', () => {
-    genModule();
-
     beforeEach(() => {
+      genModule();
       ({ fixture, dl, context } = createTestContext(TestFormComponent));
       createComp();
     });
@@ -130,7 +127,7 @@ describe('form: component', () => {
               type: 'string',
               ui: { widget: 'date', mode: 'range' },
               title: 'Date',
-              format: 'YYYY-MM-DD HH:mm:ss',
+              format: 'yyyy-MM-dd HH:mm:ss',
             },
           },
           ui: {
@@ -369,10 +366,6 @@ describe('form: component', () => {
           input: '.ant-input[disabled]',
           number: '.ant-input-number-disabled',
           switch: '.ant-switch-disabled',
-          select: [
-            ['.ant-select-enabled', 1],
-            ['.ant-select-disabled', 1],
-          ],
         };
         page.newSchema({
           properties: {
@@ -406,8 +399,8 @@ describe('form: component', () => {
         context.loading = false;
         fixture.detectChanges();
         const CLS = {
-          loading: '.ant-btn-primary.ant-btn-loading',
-          disabled: '.ant-btn-default[disabled]',
+          loading: '[data-type="submit"].ant-btn-loading',
+          disabled: '[data-type="reset"][disabled]',
         };
         page.checkCount(CLS.loading, 0);
         page.checkCount(CLS.disabled, 0);
@@ -676,9 +669,10 @@ describe('form: component', () => {
   });
 
   describe('#mode', () => {
-    genModule();
-
-    beforeEach(() => ({ fixture, dl, context } = createTestContext(TestModeComponent)));
+    beforeEach(() => {
+      genModule();
+      ({ fixture, dl, context } = createTestContext(TestModeComponent));
+    });
     it('should be auto 搜索 in submit', () => {
       context.mode = 'search';
       createComp();
@@ -708,7 +702,7 @@ describe('form: component', () => {
   });
 
   describe('ACL', () => {
-    genModule({ acl: true });
+    beforeEach(() => genModule({ acl: true }));
 
     it('should working', fakeAsync(() => {
       ({ fixture, dl, context } = createTestContext(TestFormComponent));
@@ -737,7 +731,7 @@ describe('form: component', () => {
   });
 
   describe('I18N', () => {
-    genModule({ i18n: true });
+    beforeEach(() => genModule({ i18n: true }));
 
     it('should working', fakeAsync(() => {
       ({ fixture, dl, context } = createTestContext(TestFormComponent));

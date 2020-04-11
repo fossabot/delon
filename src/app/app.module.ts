@@ -29,7 +29,7 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 import { UEditorModule } from 'ngx-ueditor';
 import { JsonSchemaModule } from './shared/json-schema/json-schema.module';
 
-import { EXAMPLE_COMPONENTS, ExampleModule } from './routes/gen/examples';
+import { ExampleModule, EXAMPLE_COMPONENTS } from './routes/gen/examples';
 import { IconComponent } from './shared/components/icon/icon.component';
 
 export function StartupServiceFactory(startupService: StartupService) {

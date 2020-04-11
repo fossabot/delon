@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AlainThemeModule } from '../../theme.module';
-import { ALAIN_I18N_TOKEN, AlainI18NService, AlainI18NServiceFake } from './i18n';
+import { AlainI18NService, AlainI18NServiceFake, ALAIN_I18N_TOKEN } from './i18n';
 
 describe('theme: i18n', () => {
   const i18n = new AlainI18NServiceFake();

@@ -3,7 +3,7 @@ import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { configureTestSuite, dispatchFakeEvent, typeInElement } from '@delon/testing';
+import { dispatchFakeEvent, typeInElement } from '@delon/testing';
 import { AlainThemeModule } from '@delon/theme';
 import { deepCopy, deepGet } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -61,7 +61,7 @@ export function builder(options?: { detectChanges?: boolean; template?: string; 
 }
 
 export function configureSFTestSuite() {
-  configureTestSuite(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, AlainThemeModule.forRoot(), DelonFormModule.forRoot(), HttpClientTestingModule],
       declarations: [TestFormComponent],
@@ -129,16 +129,22 @@ export class SFPage {
   }
 
   submit(result = true): this {
-    this.getEl('.ant-btn-primary').click();
-    if (result) expect(context.formSubmit).toHaveBeenCalled();
-    else expect(context.formSubmit).not.toHaveBeenCalled();
+    this.getEl('[data-type="submit"]').click();
+    if (result) {
+      expect(context.formSubmit).toHaveBeenCalled();
+    } else {
+      expect(context.formSubmit).not.toHaveBeenCalled();
+    }
     return this;
   }
 
   reset(result = true): this {
-    this.getEl('.ant-btn-default').click();
-    if (result) expect(context.formReset).toHaveBeenCalled();
-    else expect(context.formReset).not.toHaveBeenCalled();
+    this.getEl('[data-type="reset"]').click();
+    if (result) {
+      expect(context.formReset).toHaveBeenCalled();
+    } else {
+      expect(context.formReset).not.toHaveBeenCalled();
+    }
     return this;
   }
 

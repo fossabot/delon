@@ -19,6 +19,7 @@
           <ng-container *ngIf="button; else con">
             <button type="submit"
                     nz-button
+                    data-type="submit"
                     [nzType]="_btn.submit_type"
                     [nzSize]="_btn.render!.size"
                     [nzLoading]="loading"
@@ -34,6 +35,7 @@
             <button *ngIf="_btn.reset"
                     type="button"
                     nz-button
+                    data-type="reset"
                     [nzType]="_btn.reset_type"
                     [nzSize]="_btn.render!.size"
                     [disabled]="loading"
