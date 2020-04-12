@@ -58,7 +58,7 @@ export class ChartCustomBasicComponent {
     data = dv.rows;
     const chart = new G2.Chart({
       container: el.nativeElement,
-      forceFit: true,
+      autoFit: true,
       height: window.innerHeight,
       padding: [20, 120, 95],
     });

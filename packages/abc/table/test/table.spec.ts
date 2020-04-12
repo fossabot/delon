@@ -144,7 +144,7 @@ describe('abc: table', () => {
     });
     describe('#columns', () => {
       describe('[title]', () => {
-        it('with STColumnTitle type', done => {
+        xit('with STColumnTitle type', done => {
           page.newColumn([{ title: { text: 'a' }, index: 'id' }]).then(() => {
             page.expectHead('a', 'id', '.ant-table-column-title');
             done();

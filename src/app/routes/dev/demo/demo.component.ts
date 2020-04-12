@@ -1,27 +1,18 @@
-import { Component } from '@angular/core';
-import { DrawerHelper } from '@delon/theme';
-import { DemoDrawerComponent } from '@shared';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo',
-  template: `
-    <button nz-button (click)="open()">Open</button>
-    <button nz-button (click)="static()">Static</button>
-  `,
+  template: ` <g2-timeline [data]="chartData" [titleMap]="{ y1: '客流量', y2: '支付笔数' }" [height]="200"></g2-timeline>`,
 })
-export class DemoComponent {
-  constructor(private modalHelper: DrawerHelper, private msg: NzMessageService) {}
-
-  open(): void {
-    this.modalHelper.create('View', DemoDrawerComponent, { record: { a: 1, b: '2', c: new Date() } }).subscribe(res => {
-      this.msg.info(res);
-    });
-  }
-
-  static(): void {
-    this.modalHelper.static('View', DemoDrawerComponent, { record: { a: 1, b: '2', c: new Date() } }).subscribe(res => {
-      this.msg.info(res);
-    });
+export class DemoComponent implements OnInit {
+  chartData: any[] = [];
+  ngOnInit(): void {
+    for (let i = 0; i < 20; i += 1) {
+      this.chartData.push({
+        x: new Date().getTime() + 1000 * 60 * 30 * i,
+        y1: Math.floor(Math.random() * 100) + 1000,
+        y2: Math.floor(Math.random() * 100) + 10,
+      });
+    }
   }
 }
