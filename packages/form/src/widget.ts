@@ -56,6 +56,7 @@ export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem>
   ) {}
 
   ngAfterViewInit(): void {
+    console.log('this.sfItemComp', typeof this.sfItemComp, 'this.sfItemComp!.unsubscribe$', typeof this.sfItemComp!.unsubscribe$);
     this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp!.unsubscribe$)).subscribe((errors: ErrorData[] | null) => {
       if (errors == null) return;
       di(this.ui, 'errorsChanges', this.formProperty.path, errors);
