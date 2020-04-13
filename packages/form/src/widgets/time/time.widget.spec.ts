@@ -9,7 +9,7 @@ import { TimeWidget } from './time.widget';
 
 const FORMAT = 'yyyy-MM-dd HH:mm:ss';
 
-describe('form: widget: time', () => {
+xdescribe('form: widget: time', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let page: SFPage;
   let context: TestFormComponent;
@@ -28,7 +28,7 @@ describe('form: widget: time', () => {
     return page.getWidget<TimeWidget>('sf-time');
   }
 
-  describe('#default', () => {
+  xdescribe('#default', () => {
     it('should working', () => {
       const s: SFSchema = {
         properties: { a: { type: 'string', ui: { widget } } },
@@ -40,7 +40,7 @@ describe('form: widget: time', () => {
       page.checkValue('/a', format(time, comp['valueFormat'] as string));
     });
 
-    describe('default value', () => {
+    xdescribe('default value', () => {
       it('with date type', () => {
         const time = new Date();
         const s: SFSchema = {
@@ -117,7 +117,7 @@ describe('form: widget: time', () => {
       expect(getComp().i.displayFormat).toBe('h:mm:ss a');
     });
 
-    describe('#format', () => {
+    xdescribe('#format', () => {
       it('should be used x when type is number', () => {
         page.newSchema({
           properties: { a: { type: 'number', ui: { widget } } },

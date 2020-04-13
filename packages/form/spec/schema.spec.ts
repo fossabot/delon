@@ -22,7 +22,7 @@ xdescribe('form: schema', () => {
     page.prop(dl, context, fixture);
   });
 
-  describe('[cover schema]', () => {
+  xdescribe('[cover schema]', () => {
     beforeEach(() => spyOn(console, 'warn'));
     it('should be using select widget when not ui and enum exists', () => {
       page
@@ -147,7 +147,7 @@ xdescribe('form: schema', () => {
         fixture.detectChanges();
       }).not.toThrow();
     });
-    describe('#array', () => {
+    xdescribe('#array', () => {
       const arrUI: SFUISchemaItem = { spanLabel: 10, grid: { arraySpan: 12 } };
       const arrSchema: SFSchema = {
         properties: {
@@ -162,14 +162,14 @@ xdescribe('form: schema', () => {
           },
         },
       };
-      describe('[#via in json schema]', () => {
+      xdescribe('[#via in json schema]', () => {
         it('should be has $items when is array', () => {
           const schema = deepCopy(arrSchema) as SFSchema;
           schema.properties!.name.ui = deepCopy(arrUI);
           page.newSchema(schema).checkUI('/name', 'grid.arraySpan', arrUI.grid!.arraySpan);
         });
       });
-      describe('[#via ui property]', () => {
+      xdescribe('[#via ui property]', () => {
         it('should be has $items when is array', () => {
           const schema = deepCopy(arrSchema);
           const uiSchema: SFUISchema = {
@@ -182,7 +182,7 @@ xdescribe('form: schema', () => {
         });
       });
     });
-    describe('#optionalHelp', () => {
+    xdescribe('#optionalHelp', () => {
       it('should working when value is string', fakeAsync(() => {
         context.comp.refreshSchema({
           properties: {
@@ -226,7 +226,7 @@ xdescribe('form: schema', () => {
     });
   });
 
-  describe('[definitions]', () => {
+  xdescribe('[definitions]', () => {
     it('should be ref definitions', () => {
       page
         .newSchema({
@@ -264,7 +264,7 @@ xdescribe('form: schema', () => {
     });
   });
 
-  describe('[if]', () => {
+  xdescribe('[if]', () => {
     it('should be changed login type via if', () => {
       page
         .newSchema({
@@ -403,7 +403,7 @@ xdescribe('form: schema', () => {
     });
   });
 
-  describe('[order]', () => {
+  xdescribe('[order]', () => {
     function genKeys() {
       return JSON.stringify(Object.keys((context.comp.rootProperty as ObjectProperty).properties!));
     }
@@ -440,7 +440,7 @@ xdescribe('form: schema', () => {
       checkOrderKeys(['b', 'a', 'c']);
     });
 
-    describe('should be throw error', () => {
+    xdescribe('should be throw error', () => {
       beforeEach(() => spyOn(console, 'error'));
       it('when has extraneous key', () => {
         expect(() => {
@@ -484,7 +484,7 @@ xdescribe('form: schema', () => {
     });
   });
 
-  describe('[$ref]', () => {
+  xdescribe('[$ref]', () => {
     it('should be required valid', () => {
       page
         .newSchema({

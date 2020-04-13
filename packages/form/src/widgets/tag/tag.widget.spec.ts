@@ -5,7 +5,7 @@ import { NzTagComponent } from 'ng-zorro-antd/tag';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 import { SFSchema } from '../../../src/schema/index';
 
-describe('form: widget: tag', () => {
+xdescribe('form: widget: tag', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
@@ -61,7 +61,7 @@ describe('form: widget: tag', () => {
     expect(page.getEl('.ant-tag-checkable-checked').textContent!.trim()).toBe('item2');
   }));
 
-  describe('#mode', () => {
+  xdescribe('#mode', () => {
     it('with default', fakeAsync(() => {
       page
         .newSchema({
@@ -110,7 +110,7 @@ describe('form: widget: tag', () => {
       expect(getComp().nzMode).toBe('checkable');
     }));
 
-    describe('with closeable', () => {
+    xdescribe('with closeable', () => {
       it('should be closed', fakeAsync(() => {
         page
           .newSchema({

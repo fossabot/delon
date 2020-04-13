@@ -3,7 +3,7 @@ import { ComponentFixture, fakeAsync } from '@angular/core/testing';
 import { createTestContext } from '@delon/testing';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 
-describe('form: widget: boolean', () => {
+xdescribe('form: widget: boolean', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
@@ -38,7 +38,7 @@ describe('form: widget: boolean', () => {
       .checkValue('a', true);
   });
 
-  describe('[ui]', () => {
+  xdescribe('[ui]', () => {
     it('should be custom (un)checked children', () => {
       page
         .newSchema({

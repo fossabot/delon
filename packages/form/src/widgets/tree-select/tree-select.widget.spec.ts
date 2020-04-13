@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 import { SFSchema } from '../../../src/schema/index';
 
-describe('form: widget: tree-select', () => {
+xdescribe('form: widget: tree-select', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let page: SFPage;
   let context: TestFormComponent;

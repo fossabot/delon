@@ -40,14 +40,14 @@ xdescribe('form: component', () => {
     page.prop(dl, context, fixture);
   }
 
-  describe('', () => {
+  xdescribe('', () => {
     beforeEach(() => {
       genModule();
       ({ fixture, dl, context } = createTestContext(TestFormComponent));
       createComp();
     });
 
-    describe('[default]', () => {
+    xdescribe('[default]', () => {
       it('should throw error when parent is not object or array', () => {
         expect(() => {
           // tslint:disable-next-line: no-string-literal
@@ -165,7 +165,7 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('[button]', () => {
+    xdescribe('[button]', () => {
       it('should be has a primary button when default value', () => {
         page.checkCount('.sf-btns', 1).checkCount('.ant-btn-primary', 1);
       });
@@ -197,7 +197,7 @@ xdescribe('form: component', () => {
         page.checkCount('[type="submit"] .anticon', 1);
         page.checkCount('[type="button"] .anticon', 1);
       });
-      describe('when layout is horizontal', () => {
+      xdescribe('when layout is horizontal', () => {
         it('should be has a fix 100px width', () => {
           page
             .newSchema({
@@ -233,7 +233,7 @@ xdescribe('form: component', () => {
           page.checkStyle('.sf-btns .ant-form-item-control-wrapper', 'margin-left', `${spanLabelFixed}px`);
         });
       });
-      describe('#size', () => {
+      xdescribe('#size', () => {
         it('with small', () => {
           context.button = { render: { size: 'small' } };
           fixture.detectChanges();
@@ -254,8 +254,8 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('properites', () => {
-      describe('#validate', () => {
+    xdescribe('properites', () => {
+      xdescribe('#validate', () => {
         it('should be validate when submitted and not liveValidate', () => {
           page.submit(false);
           expect((page.getEl('.ant-btn-primary') as HTMLButtonElement).disabled).toBe(true);
@@ -265,7 +265,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#submit', () => {
+      xdescribe('#submit', () => {
         it('should be submit when is valid', () => {
           page.setValue('/name', 'cipchk').setValue('/pwd', '1111').isValid();
         });
@@ -274,7 +274,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#reset', () => {
+      xdescribe('#reset', () => {
         it('should be set default value', () => {
           const schema = deepCopy(SCHEMA.user) as SFSchema;
           schema.properties!.name.default = 'cipchk';
@@ -282,7 +282,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#layout', () => {
+      xdescribe('#layout', () => {
         ['horizontal', 'vertical', 'inline'].forEach(type => {
           it(`with ${type}`, () => {
             context.layout = type;
@@ -290,7 +290,7 @@ xdescribe('form: component', () => {
             page.checkCls('form', `ant-form-${type}`);
           });
         });
-        describe(`when with horizontal`, () => {
+        xdescribe(`when with horizontal`, () => {
           it('shoule be fixed label width', () => {
             page
               .newSchema({
@@ -323,7 +323,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#autocomplete', () => {
+      xdescribe('#autocomplete', () => {
         [null, 'on', 'off'].forEach((type: any) => {
           it(`with [${type}]`, () => {
             context.autocomplete = type;
@@ -333,7 +333,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#firstVisual', () => {
+      xdescribe('#firstVisual', () => {
         it('with false', () => {
           context.firstVisual = false;
           fixture.detectChanges();
@@ -346,7 +346,7 @@ xdescribe('form: component', () => {
         });
       });
 
-      describe('#onlyVisual', () => {
+      xdescribe('#onlyVisual', () => {
         it('with false', () => {
           context.onlyVisual = false;
           fixture.detectChanges();
@@ -420,7 +420,7 @@ xdescribe('form: component', () => {
         page.checkCount(CLS, 0);
       });
 
-      describe('#cleanValue', () => {
+      xdescribe('#cleanValue', () => {
         it('with true', () => {
           context.cleanValue = true;
           fixture.detectChanges();
@@ -468,7 +468,7 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('[widgets]', () => {
+    xdescribe('[widgets]', () => {
       it('#size', () => {
         page
           .newSchema({
@@ -495,7 +495,7 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('public methods', () => {
+    xdescribe('public methods', () => {
       it('#getProperty', () => {
         expect(context.comp.getProperty('/name')).not.toBeNull();
       });
@@ -516,7 +516,7 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('[Custom Validator]', () => {
+    xdescribe('[Custom Validator]', () => {
       it('with function and shoule be success when return a empty errors', () => {
         const s: SFSchema = {
           properties: {
@@ -598,7 +598,7 @@ xdescribe('form: component', () => {
       });
     });
 
-    describe('[Custom Show Errors]', () => {
+    xdescribe('[Custom Show Errors]', () => {
       it('shoule be re-error message via error property', () => {
         const s: SFSchema = {
           properties: {
@@ -668,7 +668,7 @@ xdescribe('form: component', () => {
     });
   });
 
-  describe('#mode', () => {
+  xdescribe('#mode', () => {
     beforeEach(() => {
       genModule();
       ({ fixture, dl, context } = createTestContext(TestModeComponent));
@@ -701,7 +701,7 @@ xdescribe('form: component', () => {
     });
   });
 
-  describe('ACL', () => {
+  xdescribe('ACL', () => {
     beforeEach(() => genModule({ acl: true }));
 
     it('should working', fakeAsync(() => {
@@ -730,7 +730,7 @@ xdescribe('form: component', () => {
     }));
   });
 
-  describe('I18N', () => {
+  xdescribe('I18N', () => {
     beforeEach(() => genModule({ i18n: true }));
 
     it('should working', fakeAsync(() => {

@@ -5,7 +5,7 @@ import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/b
 import { SFSchema } from '../../../src/schema/index';
 import { SelectWidget } from './select.widget';
 
-describe('form: widget: select', () => {
+xdescribe('form: widget: select', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;

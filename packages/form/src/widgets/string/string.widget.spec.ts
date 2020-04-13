@@ -3,7 +3,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { createTestContext } from '@delon/testing';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 
-describe('form: widget: string', () => {
+xdescribe('form: widget: string', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;

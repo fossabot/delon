@@ -4,7 +4,7 @@ import { createTestContext } from '@delon/testing';
 import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/base.spec';
 import { SFSchema } from '../../../src/schema/index';
 
-describe('form: widget: number', () => {
+xdescribe('form: widget: number', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
@@ -50,7 +50,7 @@ describe('form: widget: number', () => {
     expect(property.value).toBe(2.1);
   });
 
-  describe('#limit', () => {
+  xdescribe('#limit', () => {
     it('should be limit via schema.minimum & maximum', fakeAsync(() => {
       const minimum = 10;
       const maximum = 100;
@@ -107,7 +107,7 @@ describe('form: widget: number', () => {
     }));
   });
 
-  describe('[ui]', () => {
+  xdescribe('[ui]', () => {
     it('#prefix', fakeAsync(() => {
       const s: SFSchema = {
         properties: { a: { type: 'number', default: 1, ui: { prefix: 'a' } } },

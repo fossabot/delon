@@ -6,7 +6,7 @@ import { configureSFTestSuite, SFPage, TestFormComponent } from '../../../spec/b
 import { SFSchema } from '../../../src/schema/index';
 import { SliderWidget } from './slider.widget';
 
-describe('form: widget: slider', () => {
+xdescribe('form: widget: slider', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
