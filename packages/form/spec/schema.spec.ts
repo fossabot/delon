@@ -7,7 +7,7 @@ import { SFSchema } from '../src/schema/index';
 import { SFUISchema, SFUISchemaItem } from '../src/schema/ui';
 import { configureSFTestSuite, SFPage, TestFormComponent } from './base.spec';
 
-describe('form: schema', () => {
+xdescribe('form: schema', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;

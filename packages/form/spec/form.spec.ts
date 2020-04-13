@@ -13,7 +13,7 @@ import { SFSchema } from '../src/schema/index';
 import { WidgetRegistry } from '../src/widget.factory';
 import { SCHEMA, SFPage, TestFormComponent } from './base.spec';
 
-describe('form: component', () => {
+xdescribe('form: component', () => {
   let fixture: ComponentFixture<TestFormComponent>;
   let dl: DebugElement;
   let context: TestFormComponent;
