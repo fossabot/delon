@@ -12,11 +12,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { InteractionType } from '@delon/chart/core/types';
 import { InputBoolean, InputNumber } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
-import { InteractionType } from './../core/types';
 
 const TITLE_HEIGHT = 41;
 

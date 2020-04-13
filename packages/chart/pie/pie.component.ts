@@ -14,10 +14,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Chart } from '@antv/g2';
+import { InteractionType } from '@delon/chart/core/types';
 import { InputBoolean, InputNumber, updateHostClass } from '@delon/util';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { InteractionType } from '../core/types';
 
 export interface G2PieData {
   x: any;
