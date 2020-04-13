@@ -29,10 +29,6 @@ export class TagWidget extends ControlUIWidget<SFTagWidgetSchema> {
     }
   }
 
-  _afterClose() {
-    if (this.ui.afterClose) this.ui.afterClose();
-  }
-
   _close(e: MouseEvent) {
     if (this.ui.onClose) this.ui.onClose(e);
   }

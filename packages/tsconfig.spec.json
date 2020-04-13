@@ -23,5 +23,8 @@
   ],
   "exclude": [
     "**/schematics/**/*"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
 }

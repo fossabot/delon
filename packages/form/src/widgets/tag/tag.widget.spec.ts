@@ -148,7 +148,6 @@ describe('form: widget: tag', () => {
               ui: {
                 widget: 'tag',
                 mode: 'closeable',
-                afterClose: jasmine.createSpy(),
                 onClose: jasmine.createSpy(),
               },
               default: [1, 2],
@@ -158,7 +157,6 @@ describe('form: widget: tag', () => {
         page.newSchema(s).typeEvent('click', '.anticon');
 
         const ui = s.properties!.a.ui as any;
-        expect(ui.afterClose).toHaveBeenCalled();
         expect(ui.onClose).toHaveBeenCalled();
       }));
     });
