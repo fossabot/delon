@@ -235,6 +235,9 @@ buildCLI() {
 integrationCli() {
   echo ">>> Current dir: ${PWD}"
   # Unable to use `ng new` if the root directory contains `angular.json`
+  rm ${PWD}/node_modules
+  rm ${PWD}/package.json
+  rm ${PWD}/tsconfig.json
   rm ${PWD}/angular.json
   INTEGRATION_SOURCE=${PWD}/integration
   mkdir -p ${INTEGRATION_SOURCE}
