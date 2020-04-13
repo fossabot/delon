@@ -1,6 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, HostBinding, Inject, Injector } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, HostBinding, Inject, Injector, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocaleData } from '@delon/theme';
+import { Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ErrorData } from './errors';
 import { SFValue } from './interface';
@@ -14,7 +15,7 @@ import { SFComponent } from './sf.component';
 import { di } from './utils';
 import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
 
-export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
+export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit, OnDestroy {
   formProperty: T;
   error: string;
   showError = false;
@@ -22,6 +23,7 @@ export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem>
   schema: SFSchema;
   ui: UIT;
   firstVisual = false;
+  error$: Subscription;
 
   @HostBinding('class')
   get cls() {
@@ -56,8 +58,7 @@ export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem>
   ) {}
 
   ngAfterViewInit(): void {
-    console.log('this.sfItemComp', typeof this.sfItemComp, 'this.sfItemComp!.unsubscribe$', typeof this.sfItemComp!.unsubscribe$);
-    this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp!.unsubscribe$)).subscribe((errors: ErrorData[] | null) => {
+    this.error$ = this.formProperty.errorsChanges.subscribe((errors: ErrorData[] | null) => {
       if (errors == null) return;
       di(this.ui, 'errorsChanges', this.formProperty.path, errors);
 
@@ -70,6 +71,12 @@ export abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem>
       }
       this.firstVisual = true;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.error$) {
+      this.error$.unsubscribe();
+    }
   }
 
   setValue(value: SFValue) {
